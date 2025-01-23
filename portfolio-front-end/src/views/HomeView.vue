@@ -1,9 +1,21 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+import HeaderSection from '@/components/HeaderSection.vue';
+import HeroSection from '@/components/HeroSection.vue';
+import AboutSection from '@/components/AboutSection.vue';
+import PortfolioSection from '@/components/PortfolioSection.vue';
+import ResumeSection from '@/components/ResumeSection.vue';
+import TestimonialsSection from '@/components/Testimonials/TestimonialsSection.vue';
+// import ContactSection from '@/components/ContactSection.vue';
+// import  FooterComponent from '@/components/FooterComponent.vue';
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+    <HeaderSection />
+    <HeroSection />
+    <AboutSection />
+    <ResumeSection />
+    <PortfolioSection />
+     <TestimonialsSection />
+    <!-- <ContactSection />
+    <FooterComponent /> -->
 </template>
