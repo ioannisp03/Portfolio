@@ -1,20 +1,18 @@
 <script setup>
 // import { RouterView } from 'vue-router'
+import { Button } from 'bootstrap/dist/js/bootstrap.bundle';
 import Footer from './components/FooterComponent.vue';
-// import HomeView from './views/HomeView.vue';
 </script>
 
 <template>
 
 
   
-  <!-- <HomeView />   -->
   
 
   <RouterView />
-  <!-- <HeroSection /> -->
   <Footer /> 
-
+<Button>Hello</Button>
 </template>
 
 <style scoped>

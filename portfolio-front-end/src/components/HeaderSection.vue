@@ -5,7 +5,7 @@
         <h1 class="sitename">DevFolio</h1>
       </a>
 
-      <nav id="navmenu" class="navmenu">
+      <nav id="" class="navmenu">
         <ul>
           <li><a href="#hero" class="active">Home</a></li>
           <li><a href="#about">About</a></li>
@@ -40,4 +40,5 @@
 
 </script>
 
-
+<style scoped>
+</style>
