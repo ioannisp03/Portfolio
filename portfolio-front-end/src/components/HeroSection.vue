@@ -2,7 +2,7 @@
 
 <template>
     <section id="hero" class="hero section dark-background">
-      <p>image</p>
+      <img src="../../public/img/hero-img.jpg" alt="" data-aos="fade-in" />
       <div
         class="container d-flex flex-column align-items-center justify-content-center text-center"
         data-aos="fade-up"
