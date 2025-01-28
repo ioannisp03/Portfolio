@@ -1,4 +1,5 @@
 from flask import Flask,jsonify,request
+from flask_mail import Mail
 from flask_cors import CORS
 from pymongo import MongoClient
 from bson.objectid import ObjectId
@@ -99,7 +100,34 @@ def delete_project(project_id):
     else:
         return jsonify({"error": f"Failed to delete project with ID: {project_id}"}), 404
         
+     
         
+##########            
+#Emailing#
+##########
+
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = os.getenv('GMAIL_USERNAME')  # Load from environment variables
+app.config['MAIL_PASSWORD'] = os.getenv('GMAIL_APP_PASSWORD')  # Load from environment variables
+app.config['MAIL_DEFAULT_SENDER'] = os.getenv('GMAIL_USERNAME')  # Default sender (same as username)
+
+mail = Mail(app)
+        
+        
+@app.route('/send-email', methods=['POST'])
+def send_email():
+    data = request.get_json()
+    msg = mail.send_message(
+        subject=data['subject'],
+        sender=app.config['MAIL_DEFAULT_SENDER'],  # Your email
+        recipients=[app.config['MAIL_USERNAME']],  # Your email (you receive the message)
+        reply_to=data['sender_email'],  # User's email for replying
+        body=f"Message from: {data['sender_email']}\n\n{data['message']}"
+    )
+    return jsonify({"message": "Email sent successfully!"}), 200
+
 
 
 if __name__ == "__main__":

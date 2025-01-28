@@ -17,7 +17,7 @@
           <i class="bi bi-geo-alt flex-shrink-0"></i>
           <div>
             <h3>Address</h3>
-            <p>A108 Adam Street, New York, NY 535022</p>
+            <p>Montreal, Quebec</p>
           </div>
         </div>
       </div><!-- End Info Item -->
@@ -26,7 +26,7 @@
         <div class="info-item d-flex align-items-center">
           <i class="bi bi-telephone flex-shrink-0"></i>
           <div>
-            <h3>Call Us</h3>
+            <h3>Call me</h3>
             <p>+1 5589 55488 55</p>
           </div>
         </div>
@@ -36,8 +36,8 @@
         <div class="info-item d-flex align-items-center">
           <i class="bi bi-envelope flex-shrink-0"></i>
           <div>
-            <h3>Email Us</h3>
-            <p>info@example.com</p>
+            <h3>Email Me</h3>
+            <p>ioannis.panaritis03@gmail.com</p>
           </div>
         </div>
       </div><!-- End Info Item -->
@@ -48,9 +48,9 @@
   <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="300">
     <div class="row gy-4">
 
-      <div class="col-md-6">
+      <!-- <div class="col-md-6">
         <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
-      </div>
+      </div> -->
 
       <div class="col-md-6 ">
         <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
@@ -81,19 +81,19 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue';
+// import { reactive } from 'vue';
 
-// Form data
-const form = reactive({
-  name: '',
-  email: '',
-  message: '',
-});
+// // Form data
+// const form = reactive({
+//   name: '',
+//   email: '',
+//   message: '',
+// });
 
-// Form submission logic
-function submitForm() {
-  alert(`Form submitted: ${JSON.stringify(form)}`);
-}
+// // Form submission logic
+// function submitForm() {
+//   alert(`Form submitted: ${JSON.stringify(form)}`);
+// }
 </script>
 
 <style scoped>

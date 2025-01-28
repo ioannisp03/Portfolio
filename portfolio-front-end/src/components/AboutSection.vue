@@ -9,8 +9,7 @@
 
           <div class="row justify-content-between gy-4">
             <div class="col-lg-5">
-              <!-- <img src="assets/img/profile-img.jpg" class="img-fluid" alt=""> -->
-              <p>Image</p>
+              <img src="../assets/images/profile.png" class="img-fluid" alt="">
             </div>
             <div class="col-lg-7 about-info">
               <p><strong>Name: </strong> <span>Ioannis Panaritis</span></p>
@@ -63,20 +62,17 @@
           <div class="about-me">
             <h4>About me</h4>
             <p>
-              Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id
-              imperdiet et, porttitor
-              at sem. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Nulla
-              porttitor accumsan tincidunt.
+              I thrive in collaborative environments where technology, and teamwork intersect. While working as an AI Data Analyst at Telus, 
+              I honed my analytical skills by evaluating data inputs for accuracy and relevance, which sharpened my attention to detail. This role also enhanced
+               my problem-solving abilities, allowing me to creatively tackle challenges with flexibility.
             </p>
             <p>
-              Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vivamus suscipit tortor eget felis
-              porttitor volutpat. Vestibulum
-              ac diam sit amet quam vehicula elementum sed sit amet dui. porttitor at sem.
+              In my time at the Bell Center, I have the opportunity to work with high-end clientele, 
+              further developing my communication skills and professionalism in fast-paced environments.
             </p>
             <p>
-              Nulla porttitor accumsan tincidunt. Quisque velit nisi, pretium ut lacinia in, elementum id enim.
-              Nulla porttitor accumsan
-              tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
+              I'm excited to bring my technical expertise, strong communication skills,
+               and eagerness to learn new tools and techniques to help your organization achieve its goals and drive success
             </p>
           </div>
         </div>
