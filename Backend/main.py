@@ -109,9 +109,9 @@ def delete_project(project_id):
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = os.getenv('GMAIL_USERNAME')  # Load from environment variables
-app.config['MAIL_PASSWORD'] = os.getenv('GMAIL_APP_PASSWORD')  # Load from environment variables
-app.config['MAIL_DEFAULT_SENDER'] = os.getenv('GMAIL_USERNAME')  # Default sender (same as username)
+app.config['MAIL_USERNAME'] = os.getenv('GMAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.getenv('GMAIL_APP_PASSWORD')
+app.config['MAIL_DEFAULT_SENDER'] = os.getenv('GMAIL_USERNAME')
 
 mail = Mail(app)
         
@@ -122,7 +122,7 @@ def send_email():
     msg = mail.send_message(
         subject=data['subject'],
         sender=app.config['MAIL_DEFAULT_SENDER'],  # Your email
-        recipients=[app.config['MAIL_USERNAME']],  # Your email (you receive the message)
+        recipients=[app.config['MAIL_USERNAME']],  # Your email (I receive the message)
         reply_to=data['sender_email'],  # User's email for replying
         body=f"Message from: {data['sender_email']}\n\n{data['message']}"
     )
