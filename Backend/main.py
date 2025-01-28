@@ -11,7 +11,7 @@ import os
 load_dotenv()
 app = Flask(__name__)
 app.config.from_object(__name__)
-CORS(app, resources={r"/*": {'origins':"*"}}) # allow all for now
+CORS(app) # allow all for now
 
 
 
