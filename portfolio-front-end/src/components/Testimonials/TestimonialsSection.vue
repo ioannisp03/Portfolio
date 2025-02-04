@@ -1,9 +1,5 @@
 <template>
   <section id="testimonials" class="testimonials section accent-background">
-    <!-- <div class="container section-title" data-aos="fade-up">
-      <h2>Testimonials</h2>
-      <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-    </div> -->
     <div class="container">
       <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <!-- Indicators -->
@@ -92,15 +88,55 @@
         </button>
       </div>
       <div class="d-flex">
-          <button class="btn btn-custom mt-5 ms-auto">Add testimonial</button>
+          <button class="btn btn-custom mt-5 ms-auto" @click="showForm = true">Add testimonial</button>
         </div>
+      <div v-if="showForm" class="popup-form">
+        <form @submit.prevent="addTestimonial">
+          <label>
+            Name:
+            <input type="text" v-model="newTestimonial.name" required />
+          </label>
+          <label>
+            Role:
+            <input type="text" v-model="newTestimonial.role" required />
+          </label>
+          <label>
+            Content:
+            <textarea v-model="newTestimonial.content" required></textarea>
+          </label>
+          <label>
+            Image URL:
+            <input type="text" v-model="newTestimonial.image" required />
+          </label>
+          <button type="submit">Add</button>
+          <button type="button" @click="showForm = false">Cancel</button>
+        </form>
+      </div>
     </div>
   </section>
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
+
+const showForm = ref(false);
+const newTestimonial = ref({
+  name: '',
+  role: '',
+  content: '',
+  image: ''
+});
+const testimonials = ref([
+  // ...existing testimonials...
+]);
+
+const addTestimonial = () => {
+  testimonials.value.push({ ...newTestimonial.value });
+  newTestimonial.value = { name: '', role: '', content: '', image: '' };
+  showForm.value = false;
+};
 </script>
 
 <style scoped>
@@ -164,5 +200,16 @@ import "bootstrap";
   height: 100px;
   border-radius: 50%;
   margin: 0 auto 15px;
+}
+
+.popup-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 </style>

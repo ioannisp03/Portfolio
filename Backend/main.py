@@ -1,4 +1,4 @@
-from flask import Flask,jsonify,request
+from flask import Flask,jsonify,request, send_file
 from flask_mail import Mail
 from flask_cors import CORS
 from pymongo import MongoClient
@@ -25,7 +25,7 @@ print(f"Connected to database {db}")
 
 
 
-@app.route("/", methods=['GET'])
+@app.route("/admin_panel", methods=['GET'])
 def greetings():
     return("Hello world")
 
@@ -79,7 +79,6 @@ def get_all_projects():
     return jsonify(projects)
 
 
-
 # Add new Project
 @app.route('/projects', methods=['POST'])
 def add_project():
@@ -100,7 +99,7 @@ def delete_project(project_id):
     else:
         return jsonify({"error": f"Failed to delete project with ID: {project_id}"}), 404
         
-     
+        
         
 ##########            
 #Emailing#
@@ -128,6 +127,18 @@ def send_email():
     )
     return jsonify({"message": "Email sent successfully!"}), 200
 
+
+
+#############            
+#CV Download#
+#############
+
+@app.route('/download-pdf')
+def download_CV_pdf():
+    cv_location = "CV\IoannisPanaritis_CV.pdf"
+    print("Printing",cv_location)
+    return send_file(cv_location, as_attachment = True)
+    
 
 
 if __name__ == "__main__":
