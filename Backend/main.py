@@ -4,12 +4,14 @@ from flask_cors import CORS
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from dotenv import load_dotenv
+from flasgger import Swagger
 import os
 
 
 # Load variables from .env
 load_dotenv()
 app = Flask(__name__)
+swagger = Swagger(app)
 app.config.from_object(__name__)
 CORS(app) # allow all for now
 
@@ -36,6 +38,7 @@ def greetings():
 # Get All Testimonials
 @app.route("/testimonials", methods=["GET"])
 def get_all_testimonials():
+     
     testimonials = list(testimonials_collection.find({}))
     # Convert ObjectId to string for JSON
     for testimonial in testimonials:
@@ -77,6 +80,18 @@ def get_all_projects():
         project["_id"] = str(project["_id"]) # convert dictionary key to a string. (prepping json)
         
     return jsonify(projects)
+
+# Get Project by ID
+@app.route('/projects/<projectId>', methods=['GET'])
+def get_project_by_id(projectId):
+    project_id = ObjectId(projectId)
+    projects = list(projects_collection.find({"_id": project_id}))
+    
+    for project in projects:
+        project["_id"] = str(project["_id"]) 
+        
+    return jsonify(projects)
+
 
 
 # Add new Project

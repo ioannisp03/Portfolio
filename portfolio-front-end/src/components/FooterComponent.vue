@@ -16,6 +16,8 @@
         <a href="https://www.instagram.com/ioannis_p03/" target="_blank"><i
             class="bi bi-instagram"></i></a>
         <a href="https://www.linkedin.com/in/ioannis-panaritis/" target="_blank"><i class="bi bi-linkedin"></i></a>
+        <a href="https://www.github.com/ioannisp03/" target="_blank"><i class="bi bi-github"></i></a>
+
       </div>
     </div>
   </footer>

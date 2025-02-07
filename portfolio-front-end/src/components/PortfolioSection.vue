@@ -1,16 +1,11 @@
 <template>
-  <!-- Portfolio Section -->
   <section id="portfolio" class="portfolio section">
-
-    <!-- Section Title -->
     <div class="container section-title" data-aos="fade-up">
       <h2>Portfolio</h2>
       <p>Here is what I have built</p>
     </div>
-
     <div class="container">
       <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
-        <!-- Loop through all projects -->
         <div v-for="project in projects" :key="project.id" class="col-lg-4 col-md-6 portfolio-item">
           <a :href="project.github_link" target="_blank">
             <img :src="project.image" class="img-fluid" alt="Project Image">
@@ -34,11 +29,11 @@ const projects = ref([]); //holds the array of objects
 
 //fetch from the api
 onMounted(async () => {
-  try{
+  try {
     const response = await api.getAllProjects();
     projects.value = response;
-  }catch(error){
-    console.error("Error fetching projects: ",error)
+  } catch (error) {
+    console.error("Error fetching projects: ", error)
   }
 })
 

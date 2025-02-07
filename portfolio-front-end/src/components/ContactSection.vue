@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-
+import Toastify from 'toastify-js'
 import api from '@/services/api'
 
 const form = ref({
@@ -12,10 +12,24 @@ const form = ref({
 async function submitForm() {
   try {
     const response = await api.sendEmail(form.value);
-    alert('Email sent successfully')
-    console.log(response.data)
+    Toastify({
+      text: 'Email sent successfully',
+      duration: 3000,
+      close: true,
+      gravity: 'top',
+      position: 'right',
+      backgroundColor: '#4caf50',
+    }).showToast();
+    console.log(response.data);
   } catch (error) {
-    alert("Failed to send email", error)
+    Toastify({
+      text: `Failed to send email: ${error.message}`,
+      duration: 3000,
+      close: true,
+      gravity: 'top',
+      position: 'right',
+      backgroundColor: '#f44336',
+    }).showToast();
   }
 }
 
@@ -24,11 +38,10 @@ async function submitForm() {
 <template>
   <section id="contact" class="contact section">
 
-    <!-- Section Title -->
     <div class="container section-title" data-aos="fade-up">
       <h2>Contact</h2>
-      <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-    </div><!-- End Section Title -->
+      <p>Fill out the form to send me an email</p>
+    </div>
 
     <div class="container" data-aos="fade-up" data-aos-delay="100">
       <form @submit.prevent="submitForm" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="300">
@@ -44,15 +57,9 @@ async function submitForm() {
 
           <div class="col-md-12">
             <textarea class="form-control" v-model="form.message" rows="6" placeholder="Message" required=""></textarea>
-          </div>
 
-          <div class="col-md-12 text-center">
-            <div class="loading">Loading</div>
-            <div class="error-message"></div>
-            <div class="sent-message">Your message has been sent. Thank you!</div>
-
-            <button type="submit">Send Message</button>
           </div>
+          <button type="submit">Send Message</button>
         </div>
       </form>
     </div>

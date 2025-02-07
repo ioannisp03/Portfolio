@@ -11,6 +11,8 @@
           <li><a href="#about" style="text-decoration: none;">About</a></li>
           <li><a href="#portfolio" style="text-decoration: none;">Portfolio</a></li>
           <li><a href="#contact" style="text-decoration: none;">Contact</a></li>
+          <!-- Only logged in admin should be able to see this -->
+          <li> <router-link to="/admin-panel" style="text-decoration: none;">admin (login)</router-link></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>

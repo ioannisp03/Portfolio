@@ -1,5 +1,5 @@
 <script setup>
-import HeaderSection from '@/components/HeaderSection.vue';
+// import HeaderSection from '@/components/HeaderSection.vue';
 import HeroSection from '@/components/HeroSection.vue';
 import AboutSection from '@/components/AboutSection.vue';
 import PortfolioSection from '@/components/PortfolioSection.vue';
@@ -9,7 +9,7 @@ import ContactSection from '@/components/ContactSection.vue';
 </script>
 
 <template>
-    <HeaderSection />
+    
     <HeroSection />
     <AboutSection />
     <ResumeSection />
