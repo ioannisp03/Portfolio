@@ -4,71 +4,24 @@
       <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <!-- Indicators -->
         <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-            aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-            aria-label="Slide 2"></button>
-          <button type="button " data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-            aria-label="Slide 3"></button>
+          <button v-for="(testimonial, index) in testimonials" :key="index" type="button"
+            :data-bs-target="'#carouselExampleIndicators'" :data-bs-slide-to="index" :class="{ active: index === 0 }"
+            :aria-label="'Slide ' + (index + 1)"></button>
         </div>
 
         <!-- Carousel Items -->
         <div class="carousel-inner">
-          <div class="carousel-item active">
+          <div v-for="(testimonial, index) in testimonials" :key="testimonial._id"
+            :class="['carousel-item', { active: index === 0 }]">
             <div class="testimonial-item">
-              <img src="/img/testimonials/testimonials-1.jpg" alt="Saul Goodman" class="testimonial-img" />
-              <h3>Saul Goodman</h3>
-              <h4>CEO & Founder</h4>
-              <div class="stars">
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-              </div>
+              <h3>{{ testimonial.name }}</h3>
+              <h4>{{ testimonial.title }}</h4>
+              <!-- <div class="stars">
+                <i class="bi bi-star-fill" v-for="star in 5" :key="star"></i>
+              </div> -->
               <p>
                 <i class="bi bi-quote quote-icon-left"></i>
-                Proin iaculis purus consequat sem cure dignissim donec porttitora entum suscipit rhoncus.
-                <i class="bi bi-quote quote-icon-right"></i>
-              </p>
-            </div>
-          </div>
-
-          <div class="carousel-item">
-            <div class="testimonial-item">
-              <img src="/img/testimonials/testimonials-2.jpg" alt="Sara Wilsson" class="testimonial-img" />
-              <h3>Sara Wilsson</h3>
-              <h4>Designer</h4>
-              <div class="stars">
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-              </div>
-              <p>
-                <i class="bi bi-quote quote-icon-left"></i>
-                Export tempor illum tamen malis malis eram quae irure esse labore quem cillum.
-                <i class="bi bi-quote quote-icon-right"></i>
-              </p>
-            </div>
-          </div>
-
-          <div class="carousel-item">
-            <div class="testimonial-item">
-              <img src="/img/testimonials/testimonials-3.jpg" alt="Jena Karlis" class="testimonial-img" />
-              <h3>Jena Karlis</h3>
-              <h4>Store Owner</h4>
-              <div class="stars">
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-              </div>
-              <p>
-                <i class="bi bi-quote quote-icon-left"></i>
-                Enim nisi quem export duis labore cillum magna enim sint.
+                {{ testimonial.message }}
                 <i class="bi bi-quote quote-icon-right"></i>
               </p>
             </div>
@@ -88,65 +41,104 @@
         </button>
       </div>
       <div class="d-flex">
-          <button class="btn btn-custom mt-5 ms-auto" @click="showForm = true">Add testimonial</button>
-        </div>
-      <div v-if="showForm" class="popup-form">
-        <form @submit.prevent="addTestimonial">
-          <label>
-            Name:
-            <input type="text" v-model="newTestimonial.name" required />
-          </label>
-          <label>
-            Role:
-            <input type="text" v-model="newTestimonial.role" required />
-          </label>
-          <label>
-            Content:
-            <textarea v-model="newTestimonial.content" required></textarea>
-          </label>
-          <label>
-            Image URL:
-            <input type="text" v-model="newTestimonial.image" required />
-          </label>
-          <button type="submit">Add</button>
-          <button type="button" @click="showForm = false">Cancel</button>
-        </form>
+        <button class="btn btn-custom mt-5 ms-auto" @click="showAddTestimonialModal">Add testimonial</button>
       </div>
     </div>
   </section>
+
+
+  <!-- Modal for adding a testimonial -->
+  <div class="modal fade" id="addTestimonialModal" tabindex="-1" aria-labelledby="addTestimonialModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addTestimonialModalLabel">Add Testimonial</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form @submit.prevent="addTestimonial">
+            <div class="mb-3">
+              <label for="testimonialName" class="form-label">Name</label>
+              <input type="text" class="form-control" id="testimonialName" v-model="newTestimonial.name" required>
+            </div>
+            <div class="mb-3">
+              <label for="testimonialTitle" class="form-label">Title</label>
+              <input type="text" class="form-control" id="testimonialTitle" v-model="newTestimonial.title" required>
+            </div>
+            <div class="mb-3">
+              <label for="testimonialMessage" class="form-label">Message</label>
+              <textarea class="form-control" id="testimonialMessage" required
+                v-model="newTestimonial.message"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Testimonial</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import api from '@/services/api';
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap";
+import * as bootstrap from 'bootstrap';
 
-const showForm = ref(false);
+const testimonials = ref([]);
 const newTestimonial = ref({
   name: '',
-  role: '',
-  content: '',
-  image: ''
+  title: '',
+  message: ''
 });
-const testimonials = ref([
-  // ...existing testimonials...
-]);
 
-const addTestimonial = () => {
-  testimonials.value.push({ ...newTestimonial.value });
-  newTestimonial.value = { name: '', role: '', content: '', image: '' };
-  showForm.value = false;
+const showAddTestimonialModal = () => {
+  newTestimonial.value = {}; // reset the new testimonial data
+  const addTestimonialModal = new bootstrap.Modal(document.getElementById('addTestimonialModal'));
+  addTestimonialModal.show();
+};
+
+
+onMounted(async () => {
+  try {
+    const response = await api.getAllTestimonials();
+    testimonials.value = response.filter(testimonial => testimonial.status === 'shown');
+  } catch (error) {
+    console.error("Error fetching testimonials: ", error);
+  }
+});
+
+const addTestimonial = async () => {
+  try {
+    await api.addTestimonial(newTestimonial.value);
+
+    // Fetch updated testimonial list
+    const updatedTestimonials = await api.getAllTestimonials();
+    testimonials.value = updatedTestimonials;
+
+    newTestimonial.value = {
+      name: '',
+      title: '',
+      message: ''
+    };
+
+    // Close modal
+    bootstrap.Modal.getInstance(document.getElementById('addTestimonialModal')).hide();
+  } catch (error) {
+    console.error("Error adding testimonial: ", error);
+  }
 };
 </script>
 
 <style scoped>
 .testimonials {
-  padding: 40px 0;
+  padding: 100px 0;
   background-image: url("../.././../public/img/testimonials-bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  position: relative; /* Needed for the pseudo-element to position correctly */
+  position: relative;
+  /* Needed for the pseudo-element to position correctly */
 
 }
 
@@ -157,20 +149,23 @@ const addTestimonial = () => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(59, 99, 209, 0.5); /* Blue overlay */
-  z-index: 1; /* Ensures the overlay is above the image but below the content */
+  background: rgba(59, 99, 209, 0.5);
+  /* Blue overlay */
+  z-index: 1;
+  /* Ensures the overlay is above the image but below the content */
 }
 
 .testimonials .container {
-  position: relative; /* Ensures content stays above the overlay */
+  position: relative;
+  /* Ensures content stays above the overlay */
   z-index: 2;
 }
 
 
-.btn-custom{
+.btn-custom {
   color: gre;
   background-color: rgb(190, 190, 190);
-  
+
 }
 
 #testimonials {

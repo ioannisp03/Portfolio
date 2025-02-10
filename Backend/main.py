@@ -99,7 +99,7 @@ def get_project_by_id(projectId):
 @app.route('/projects', methods=['POST'])
 def add_project():
     new_project = request.get_json()
-    new_project['status'] = 'hidden'  # Ensure each new project has a status of 'hidden'
+    # new_project['status'] = 'shown'  # Ensure each new project has a status of 'hidden'
     projects_collection.insert_one(new_project)
     
     return jsonify({"message" : "Project added successfully!"}), 200
