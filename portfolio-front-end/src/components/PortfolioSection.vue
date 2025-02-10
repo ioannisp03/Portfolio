@@ -6,7 +6,7 @@
     </div>
     <div class="container">
       <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
-        <div v-for="project in projects" :key="project.id" class="col-lg-4 col-md-6 portfolio-item">
+        <div v-for="project in filteredProjects" :key="project.id" class="col-lg-4 col-md-6 portfolio-item">
           <a :href="project.github_link" target="_blank">
             <img :src="project.image" class="img-fluid" alt="Project Image">
           </a>
@@ -23,9 +23,9 @@
 
 <script setup>
 import api from '@/services/api';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 
-const projects = ref([]); //holds the array of objects
+const projects = ref([]); 
 
 //fetch from the api
 onMounted(async () => {
@@ -36,6 +36,10 @@ onMounted(async () => {
     console.error("Error fetching projects: ", error)
   }
 })
+
+const filteredProjects = computed(() => {
+  return projects.value.filter(project => project.status === 'shown');
+});
 
 </script>
 

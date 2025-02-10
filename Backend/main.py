@@ -51,6 +51,7 @@ def get_all_testimonials():
 def add_testimonials():
     new_testimonial = request.get_json()
     # Insert the new testimonial into the collection
+    new_testimonial['status'] = 'hidden'
     testimonials_collection.insert_one(new_testimonial)
     return jsonify({"message": "Testimonial added successfully"}), 201
 
@@ -98,6 +99,7 @@ def get_project_by_id(projectId):
 @app.route('/projects', methods=['POST'])
 def add_project():
     new_project = request.get_json()
+    new_project['status'] = 'hidden'  # Ensure each new project has a status of 'hidden'
     projects_collection.insert_one(new_project)
     
     return jsonify({"message" : "Project added successfully!"}), 200
