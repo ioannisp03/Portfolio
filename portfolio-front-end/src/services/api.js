@@ -19,6 +19,13 @@ export default {
         return response.data;
     },
 
+    async updateTestimonial(data) {
+        
+        const response = await axios.put(`${API_BASE_URL}/testimonial/${data._id}`, data);
+        return response.data;
+    },
+    
+
     async deleteTestimonial(id) {
         const response = await axios.delete(`${API_BASE_URL}/testimonial/${id}`);
         return response.data;
@@ -27,6 +34,11 @@ export default {
     // Projects
     async getAllProjects() {
         const response = await axios.get(`${API_BASE_URL}/projects`);
+        return response.data;
+    },
+
+    async updateProject(data) {
+        const response = await axios.put(`${API_BASE_URL}/project/${data._id}`, data);
         return response.data;
     },
 

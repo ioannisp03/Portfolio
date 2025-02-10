@@ -46,7 +46,10 @@
                                             {{ project.github_link }}
                                         </a>
                                     </td>
-                                    <td>{{ project.status }}</td>
+                                    <td
+                                        :class="{ 'text-success': project.status === 'shown', 'text-danger': project.status === 'hidden' }">
+                                        {{ project.status }}
+                                    </td>
 
                                     <!-- Delete button -->
                                     <td class="d-flex flex-wrap gap-2">
@@ -55,7 +58,7 @@
                                             <i class="bi bi-x-square-fill"></i>
                                         </button>
                                         <!-- Edit button -->
-                                        <button class="btn btn-warning btn-sm">
+                                        <button @click="showUpdateProjectModal(project)" class="btn btn-warning btn-sm">
                                             <i class="bi bi-pencil-square"></i>
                                         </button>
                                     </td>
@@ -85,12 +88,16 @@
                                     <td>{{ testimonial.name }}</td>
                                     <td>{{ testimonial.title }}</td>
                                     <td class="text-truncate" style="max-width: 200px;">{{ testimonial.message }}</td>
-                                    <td>{{ testimonial.status }}</td>
+                                    <td
+                                        :class="{ 'text-success': testimonial.status === 'shown', 'text-danger': testimonial.status === 'hidden' }">
+                                        {{ testimonial.status }}
+                                    </td>
                                     <td class="d-flex flex-wrap gap-2">
                                         <button @click="deleteTestimonial(testimonial._id)"
                                             class="btn btn-danger btn-sm"><i class="bi bi-x-square-fill"></i></button>
-                                        <button class="btn btn-warning btn-sm"><i
-                                                class="bi bi-pencil-square"></i></button>
+                                        <button @click="showUpdateTestimonialModal(testimonial)" class="btn btn-warning btn-sm">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -100,7 +107,7 @@
             </div>
         </div>
 
-        <!-- Modal for adding a proj -->
+        <!-- Modal for adding a project -->
         <div class="modal fade" id="addProjectModal" tabindex="-1" aria-labelledby="addProjectModalLabel"
             aria-hidden="true">
             <div class="modal-dialog">
@@ -145,8 +152,54 @@
             </div>
         </div>
 
+        <!-- Modal for updating a project -->
+        <div class="modal fade" id="updateProjectModal" tabindex="-1" aria-labelledby="updateProjectModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="updateProjectModalLabel">Update Project</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form @submit.prevent="updateProject">
+                            <div class="mb-3">
+                                <label for="updateProjectName" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="updateProjectName" v-model="currentProject.name"
+                                    required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="updateProjectImage" class="form-label">Image URL</label>
+                                <input type="text" class="form-control" id="updateProjectImage" v-model="currentProject.image"
+                                    required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="updateProjectDescription" class="form-label">Description</label>
+                                <textarea class="form-control" id="updateProjectDescription" required
+                                    v-model="currentProject.description"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="updateProjectGithubLink" class="form-label">Github Link</label>
+                                <input type="text" class="form-control" id="updateProjectGithubLink" required
+                                    v-model="currentProject.github_link">
+                            </div>
+                            <div class="mb-3">
+                                <label for="updateProjectStatus" class="form-label">Status</label>
+                                <select class="form-control" id="updateProjectStatus" v-model="currentProject.status" required>
+                                    <option value="shown">shown</option>
+                                    <option value="hidden">hidden</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Update Project</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Modal for adding a testimonial -->
-        <div class="modal fade" id="addTestimonialModal" tabindex="-1" aria-labelledby="addTestimonialModalLabel" aria-hidden="true">
+        <div class="modal fade" id="addTestimonialModal" tabindex="-1" aria-labelledby="addTestimonialModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -157,24 +210,68 @@
                         <form @submit.prevent="addTestimonial">
                             <div class="mb-3">
                                 <label for="testimonialName" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="testimonialName" v-model="newTestimonial.name" required>
+                                <input type="text" class="form-control" id="testimonialName"
+                                    v-model="newTestimonial.name" required>
                             </div>
                             <div class="mb-3">
                                 <label for="testimonialTitle" class="form-label">Title</label>
-                                <input type="text" class="form-control" id="testimonialTitle" v-model="newTestimonial.title" required>
+                                <input type="text" class="form-control" id="testimonialTitle"
+                                    v-model="newTestimonial.title" required>
                             </div>
                             <div class="mb-3">
                                 <label for="testimonialMessage" class="form-label">Message</label>
-                                <textarea class="form-control" id="testimonialMessage" required v-model="newTestimonial.message"></textarea>
+                                <textarea class="form-control" id="testimonialMessage" required
+                                    v-model="newTestimonial.message"></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="testimonialStatus" class="form-label">Status</label>
-                                <select class="form-control" id="testimonialStatus" v-model="newTestimonial.status" required>
+                                <select class="form-control" id="testimonialStatus" v-model="newTestimonial.status"
+                                    required>
                                     <option value="shown">shown</option>
                                     <option value="hidden">hidden</option>
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-primary">Add Testimonial</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for updating a testimonial -->
+        <div class="modal fade" id="updateTestimonialModal" tabindex="-1" aria-labelledby="updateTestimonialModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="updateTestimonialModalLabel">Update Testimonial</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form @submit.prevent="updateTestimonial">
+                            <div class="mb-3">
+                                <label for="updateTestimonialName" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="updateTestimonialName" v-model="currentTestimonial.name"
+                                    required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="updateTestimonialTitle" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="updateTestimonialTitle" v-model="currentTestimonial.title"
+                                    required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="updateTestimonialMessage" class="form-label">Message</label>
+                                <textarea class="form-control" id="updateTestimonialMessage" required
+                                    v-model="currentTestimonial.message"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="updateTestimonialStatus" class="form-label">Status</label>
+                                <select class="form-control" id="updateTestimonialStatus" v-model="currentTestimonial.status" required>
+                                    <option value="shown">shown</option>
+                                    <option value="hidden">hidden</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Update Testimonial</button>
                         </form>
                     </div>
                 </div>
@@ -206,6 +303,8 @@ const newTestimonial = ref({
     message: '',
     status: ''
 });
+const currentProject = ref({});
+const currentTestimonial = ref({});
 
 onMounted(async () => {
     try {
@@ -229,10 +328,22 @@ const showAddProjectModal = () => {
     addProjectModal.show();
 };
 
+const showUpdateProjectModal = (project) => {
+    currentProject.value = { ...project }; // preload the project data
+    const updateProjectModal = new bootstrap.Modal(document.getElementById('updateProjectModal'));
+    updateProjectModal.show();
+};
+
 const showAddTestimonialModal = () => {
     newTestimonial.value = {}; // reset the new testimonial data
     const addTestimonialModal = new bootstrap.Modal(document.getElementById('addTestimonialModal'));
     addTestimonialModal.show();
+};
+
+const showUpdateTestimonialModal = (testimonial) => {
+    currentTestimonial.value = { ...testimonial }; // preload the testimonial data
+    const updateTestimonialModal = new bootstrap.Modal(document.getElementById('updateTestimonialModal'));
+    updateTestimonialModal.show();
 };
 
 const addProject = async () => {
@@ -258,9 +369,25 @@ const addProject = async () => {
     }
 };
 
+const updateProject = async () => {
+    console.log(currentProject.value)
+    try {
+        await api.updateProject(currentProject.value); // Send updated project to backend
+
+        // Fetch updated project list
+        const updatedProjects = await api.getAllProjects();
+        projects.value = updatedProjects;
+
+        // Close modal
+        bootstrap.Modal.getInstance(document.getElementById('updateProjectModal')).hide();
+    } catch (error) {
+        console.error("Error updating project: ", error);
+    }
+};
+
 const addTestimonial = async () => {
     try {
-        await api.addTestimonial(newTestimonial.value); 
+        await api.addTestimonial(newTestimonial.value);
 
         // Fetch updated testimonial list
         const updatedTestimonials = await api.getAllTestimonials();
@@ -277,6 +404,27 @@ const addTestimonial = async () => {
         bootstrap.Modal.getInstance(document.getElementById('addTestimonialModal')).hide();
     } catch (error) {
         console.error("Error adding testimonial: ", error);
+    }
+};
+
+const updateTestimonial = async () => {
+    console.log("Current Testimonial:", currentTestimonial.value); // Log the current testimonial
+
+  if (!currentTestimonial.value._id || currentTestimonial.value._id === 'undefined') {
+    console.error("Invalid testimonial ID:", currentTestimonial.value._id);
+    return;
+  }
+    try {
+        await api.updateTestimonial(currentTestimonial.value); // Send updated testimonial to backend
+
+        // Fetch updated testimonial list
+        const updatedTestimonials = await api.getAllTestimonials();
+        testimonials.value = updatedTestimonials;
+
+        // Close modal
+        bootstrap.Modal.getInstance(document.getElementById('updateTestimonialModal')).hide();
+    } catch (error) {
+        console.error("Error updating testimonial: ", error);
     }
 };
 
@@ -314,10 +462,6 @@ const deleteTestimonial = async (testimonialId) => {
 }
 
 </script>
-
-
-
-
 
 
 <style scoped>

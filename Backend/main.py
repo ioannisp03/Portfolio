@@ -51,10 +51,27 @@ def get_all_testimonials():
 def add_testimonials():
     new_testimonial = request.get_json()
     # Insert the new testimonial into the collection
-    new_testimonial['status'] = 'hidden'
+    new_testimonial['status'] = 'shown'
     testimonials_collection.insert_one(new_testimonial)
     return jsonify({"message": "Testimonial added successfully"}), 201
 
+    # Update Testimonial by ID
+@app.route('/testimonial/<testimonial_id>', methods=['PUT'])
+def update_testimonial(testimonial_id):
+    testimonial_id = ObjectId(testimonial_id)
+    updated_data = request.get_json()
+    
+    # removes '_id' from the request if it exists
+    updated_data.pop('_id', None)
+    result = testimonials_collection.update_one(
+        {"_id": testimonial_id},
+        {"$set": updated_data}
+    )
+    
+    if result.matched_count > 0:
+        return jsonify({"message": f"Successfully updated testimonial with ID: {testimonial_id}"}), 200
+    else:
+        return jsonify({"error": f"Failed to update testimonial with ID: {testimonial_id}"}), 404
 
 # Delete testimonial by ID
 @app.route('/testimonial/<testimonial_id>', methods=['DELETE'])
@@ -93,6 +110,27 @@ def get_project_by_id(projectId):
         
     return jsonify(projects)
 
+# update project
+@app.route('/project/<projectId>', methods = ['PUT'])
+def update_project(projectId):
+    project_id = ObjectId(projectId)
+    updated_project = request.get_json()
+    
+    # removes '_id' from the request if it exists
+    updated_project.pop('_id', None)
+    result = projects_collection.update_one(
+        {"_id": project_id},
+        {"$set": updated_project}
+    )
+    if result.matched_count > 0:
+        return jsonify({"message": f"Sucessfully updated project with ID: {project_id}"}),200
+    else:
+        return jsonify({"error": f"Failed to delete testimonial with ID: {project_id}"}), 404
+    
+    
+    
+    
+    
 
 
 # Add new Project
