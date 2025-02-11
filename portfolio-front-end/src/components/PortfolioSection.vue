@@ -8,10 +8,10 @@
       <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
         <div v-for="project in filteredProjects" :key="project.id" class="col-lg-4 col-md-6 portfolio-item">
           <a :href="project.github_link" target="_blank">
-            <img :src="project.image" class="img-fluid" alt="Project Image">
+            <img :src="project.image" class="img-fluid" alt="Project Image" style="max-width: 100%; height: auto;">
           </a>
           <div class="portfolio-info">
-            <h4>{{ project.title }}</h4>
+            <h4>{{ project.name }}</h4>
             <p>{{ project.description }}</p>
           </div>
         </div>

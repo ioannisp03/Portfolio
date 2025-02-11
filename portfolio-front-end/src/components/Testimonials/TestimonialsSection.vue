@@ -11,7 +11,7 @@
 
         <!-- Carousel Items -->
         <div class="carousel-inner">
-          <div v-for="(testimonial, index) in testimonials" :key="testimonial._id"
+          <div v-for="(testimonial, index) in filteredTestimonials" :key="testimonial._id"
             :class="['carousel-item', { active: index === 0 }]">
             <div class="testimonial-item">
               <h3>{{ testimonial.name }}</h3>
@@ -80,7 +80,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import api from '@/services/api';
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as bootstrap from 'bootstrap';
@@ -128,6 +128,9 @@ const addTestimonial = async () => {
     console.error("Error adding testimonial: ", error);
   }
 };
+const filteredTestimonials = computed(() => {
+  return testimonials.value.filter(testimonial => testimonial.status === 'shown')
+})
 </script>
 
 <style scoped>

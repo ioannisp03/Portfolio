@@ -51,11 +51,11 @@ def get_all_testimonials():
 def add_testimonials():
     new_testimonial = request.get_json()
     # Insert the new testimonial into the collection
-    new_testimonial['status'] = 'shown'
+    new_testimonial['status'] = 'hidden'
     testimonials_collection.insert_one(new_testimonial)
     return jsonify({"message": "Testimonial added successfully"}), 201
 
-    # Update Testimonial by ID
+# Update Testimonial by ID
 @app.route('/testimonial/<testimonial_id>', methods=['PUT'])
 def update_testimonial(testimonial_id):
     testimonial_id = ObjectId(testimonial_id)
