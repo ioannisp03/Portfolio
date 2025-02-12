@@ -9,12 +9,10 @@ import ContactSection from '@/components/ContactSection.vue';
 </script>
 
 <template>
-    
     <HeroSection />
     <AboutSection />
     <ResumeSection />
     <PortfolioSection />
     <TestimonialsSection />
     <ContactSection />
-
 </template>

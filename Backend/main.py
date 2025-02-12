@@ -1,4 +1,6 @@
 from flask import Flask,jsonify,request, send_file
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, JWTManager
+from datetime import timedelta
 from flask_mail import Mail
 from flask_cors import CORS
 from pymongo import MongoClient
@@ -6,6 +8,7 @@ from bson.objectid import ObjectId
 from dotenv import load_dotenv
 from flasgger import Swagger
 import os
+import bcrypt
 
 
 # Load variables from .env
@@ -13,19 +16,65 @@ load_dotenv()
 app = Flask(__name__)
 swagger = Swagger(app)
 app.config.from_object(__name__)
-CORS(app) # allow all for now
-
-
+CORS(app)
 
 # Load database
 client = MongoClient(os.getenv("MONGO_URI")) 
 db = client["ioannisportfolio"] 
 
+# Auth
+app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
+
+jwt = JWTManager(app)
+
 testimonials_collection = db["testimonials"]
 projects_collection = db["projects"]
+users_collection = db["users"]
 print(f"Connected to database {db}")
 
 
+@app.route("/register", methods=["POST"])
+def register():
+    data = request.get_json()
+    if not data.get("username") or not data.get("password"):
+        return jsonify({"message": "Username and password is required"}), 400
+    
+    existing_user = users_collection.find_one({"username": data ["username"]})
+    if existing_user:
+        return jsonify({"message" : "User already exists"}), 400
+    
+    hashed_password = bcrypt.hashpw(data["password"].encode('utf-8'), bcrypt.gensalt())
+    
+    # Assign default role "user" to everyone who registers
+    role = data.get("role", "user")
+    
+    users_collection.insert_one({"username": data["username"], "password": hashed_password, "role": role})
+    
+    return jsonify({"message": "User registered successfully"}), 201  
+
+
+@app.route("/login", methods=["POST"])
+def login():
+    data = request.get_json()
+    user = users_collection.find_one({"username": data["username"]})
+    
+    if not user or not bcrypt.checkpw(data["password"].encode("utf-8"), user["password"]):
+        return jsonify({"message": "Invalid credentials"}), 400
+    
+    access_token = create_access_token(identity=data["username"])
+    return jsonify({"token": access_token}),200
+
+@app.route("/logout", methods=["POST"])
+@jwt_required()
+def logout():
+    return jsonify({"message":"Logout successfully"}), 200
+
+
+@app.route("/protected", methods=["GET"])
+@jwt_required()
+def protected():
+    current_user = get_jwt_identity()
+    return jsonify({"message": f"Hello {current_user}, you have access!"}), 200
 
 @app.route("/admin_panel", methods=['GET'])
 def greetings():

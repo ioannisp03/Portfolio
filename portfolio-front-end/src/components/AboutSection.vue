@@ -14,8 +14,7 @@
             <div class="col-lg-7 about-info">
               <p><strong>Name: </strong> <span>Ioannis Panaritis</span></p>
               <p><strong>Profile: </strong> <span>full stack developer</span></p>
-              <p><strong>Email: </strong> <span>ioannis.panaritis03@gmail.com</span></p>
-              <p><strong>Phone: </strong> <span>438-763-6898</span></p>
+              <p><strong>Email: </strong> <span>Email me below</span></p>
             </div>
           </div>
 

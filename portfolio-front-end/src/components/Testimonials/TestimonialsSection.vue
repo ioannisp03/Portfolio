@@ -1,8 +1,11 @@
 <template>
+   <div class="container section-title" data-aos="fade-up">
+      <h2>Testimonials</h2>
+      <p>Don't forget to leave a testimonial!</p>
+    </div>
   <section id="testimonials" class="testimonials section accent-background">
     <div class="container">
       <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-        <!-- Indicators -->
         <div class="carousel-indicators">
           <button v-for="(testimonial, index) in testimonials" :key="index" type="button"
             :data-bs-target="'#carouselExampleIndicators'" :data-bs-slide-to="index" :class="{ active: index === 0 }"
@@ -16,9 +19,6 @@
             <div class="testimonial-item">
               <h3>{{ testimonial.name }}</h3>
               <h4>{{ testimonial.title }}</h4>
-              <!-- <div class="stars">
-                <i class="bi bi-star-fill" v-for="star in 5" :key="star"></i>
-              </div> -->
               <p>
                 <i class="bi bi-quote quote-icon-left"></i>
                 {{ testimonial.message }}
@@ -45,7 +45,6 @@
       </div>
     </div>
   </section>
-
 
   <!-- Modal for adding a testimonial -->
   <div class="modal fade" id="addTestimonialModal" tabindex="-1" aria-labelledby="addTestimonialModalLabel"

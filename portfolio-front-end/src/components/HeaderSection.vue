@@ -9,7 +9,9 @@
         <ul>
           <li><a href="/#hero" style="text-decoration: none;">Home</a></li>
           <li><a href="/#about" style="text-decoration: none;">About</a></li>
+          <li><a href="/#resume" style="text-decoration: none;">Resume</a></li>
           <li><a href="/#portfolio" style="text-decoration: none;">Portfolio</a></li>
+          <li><a href="/#testimonials" style="text-decoration: none;">Testimonials</a></li>
           <li><a href="/#contact" style="text-decoration: none;">Contact</a></li>
           <!-- Only logged in admin should be able to see this -->
           <li> <router-link to="/admin-panel" style="text-decoration: none;">admin (login)</router-link></li>
