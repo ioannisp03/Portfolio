@@ -1,5 +1,5 @@
 from flask import Flask,jsonify,request, send_file
-from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, JWTManager
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, JWTManager, get_jwt
 from datetime import timedelta
 from flask_mail import Mail
 from flask_cors import CORS
@@ -61,7 +61,9 @@ def login():
     if not user or not bcrypt.checkpw(data["password"].encode("utf-8"), user["password"]):
         return jsonify({"message": "Invalid credentials"}), 400
     
-    access_token = create_access_token(identity=data["username"])
+    access_token = create_access_token(identity=data["username"], 
+                                       additional_claims={"role": user["role"]}) 
+       
     return jsonify({"token": access_token}),200
 
 @app.route("/logout", methods=["POST"])
@@ -76,9 +78,21 @@ def protected():
     current_user = get_jwt_identity()
     return jsonify({"message": f"Hello {current_user}, you have access!"}), 200
 
-@app.route("/admin_panel", methods=['GET'])
-def greetings():
-    return("Hello world")
+
+@app.route("/api/user", methods=["GET"])
+@jwt_required()
+def get_user_info():
+    current_user = get_jwt_identity()  
+    claims = get_jwt()  
+
+    return jsonify({
+        "message": "User data fetched",
+        "data": {
+            "username": current_user, 
+            "role": claims["role"]
+        }
+    }), 200
+
 
 ##############            
 #TESTIMONIALS#
@@ -177,11 +191,6 @@ def update_project(projectId):
         return jsonify({"error": f"Failed to delete testimonial with ID: {project_id}"}), 404
     
     
-    
-    
-    
-
-
 # Add new Project
 @app.route('/projects', methods=['POST'])
 def add_project():
