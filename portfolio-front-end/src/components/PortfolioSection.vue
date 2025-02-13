@@ -48,4 +48,32 @@ const filteredProjects = computed(() => {
   font-weight: bold;
   color: #333;
 }
+
+.portfolio-item {
+  transition: transform 0.3s ease;
+}
+
+.portfolio-item:hover {
+  transform: scale(1.05);
+}
+
+.portfolio-info {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: -20px;
+  position: relative;
+  z-index: 1;
+}
+
+.portfolio-info h4 {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.portfolio-info p {
+  font-size: 0.875rem;
+  color: #666;
+}
 </style>

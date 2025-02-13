@@ -1,17 +1,19 @@
-import './assets/main.css'
-import "bootstrap/dist/css/bootstrap.min.css"
-import "bootstrap-icons/font/bootstrap-icons.css";
-import "toastify-js/src/toastify.css"; 
-import "bootstrap"
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import './assets/main.css'; 
 
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
+import * as bootstrap from "bootstrap";
+window.bootstrap = bootstrap;
+
+import { createApp } from "vue";
+import App from "./App.vue";
+import router from "./router";
 
 
-const app = createApp(App)
+const app = createApp(App);
+app.use(router);
+app.mount("#app");
 
-app.use(router)
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
-app.mount('#app')
