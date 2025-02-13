@@ -113,19 +113,17 @@ const toggleMobileMenu = () => {
   list-style: none;
   display: flex;
   align-items: center;
-  padding: 0;
-  margin: 0;
-  gap: 20px;
+
 }
 
-.navmenu ul li {
+/* .navmenu ul li {
   position: relative;
-}
+} */
 
 .navmenu ul li a {
   text-decoration: none;
   color: white;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: bold;
   transition: color 0.3s ease-in-out;
 }
@@ -135,10 +133,10 @@ const toggleMobileMenu = () => {
 }
 
 /* User Dropdown */
-.user-dropdown-container {
+/* .user-dropdown-container {
   position: relative;
   display: inline-block;
-}
+} */
 
 .user-dropdown {
   font-size: 1.1rem;
@@ -194,8 +192,8 @@ const toggleMobileMenu = () => {
 }
 
 .user-menu li a:hover {
-  background: #f39c12;
-  color: white;
+  /* background: #f39c12; */
+  color: #f39c12;;
   padding: 4px;
   border-radius: 4px;
 }
@@ -239,7 +237,7 @@ const toggleMobileMenu = () => {
     top: 60px;
     right: -100%;
     background: rgba(0, 0, 0, 0.95);
-    width: 250px; /* Slightly wider for tablet */
+    width: 250px; 
     height: auto;
     max-height: calc(100vh - 60px);
     padding: 15px 0;
