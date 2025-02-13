@@ -1,4 +1,4 @@
-from flask import Flask,jsonify,request, send_file
+from flask import Flask, jsonify, request, send_file, send_from_directory
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, JWTManager, get_jwt
 from datetime import timedelta
 from flask_mail import Mail
@@ -250,10 +250,10 @@ def send_email():
 def download_CV_pdf():
     cv_location = "CV\IoannisPanaritis_CV.pdf"
     print("Printing",cv_location)
-    return send_file(cv_location, as_attachment = True)
+    return send_from_directory("CV", "IoannisPanaritis_CV.pdf", as_attachment=True)
     
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8080))  # Use 8080 as default
+    port = int(os.environ.get("PORT", 8080))  # Use 8080 
     app.run(host="0.0.0.0", port=port)
