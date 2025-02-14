@@ -1,0 +1,114 @@
+{
+  "navigation": {
+    "hello": "Bonjour",
+    "home": "Accueil",
+    "about": "À propos",
+    "resume": "CV",
+    "portfolio": "Portfolio",
+    "testimonials": "Témoignages",
+    "contact": "Contact",
+    "adminPanel": "Portail Admin",
+    "registerLogin": "Profil",
+    "logout": "Déconnexion"
+  },
+  "resume": {
+    "title": "CV",
+    "downloadResume": "Téléchargez {resumeLink} si vous voulez en voir plus!",
+
+    "summaryTitle": "Résumé",
+    "summaryDescription": "Développeur logiciel innovant et axé sur les délais avec plus de 2 ans d'expérience dans le développement d'applications centrées sur l'utilisateur, de la conception initiale au produit final.",
+
+    "educationTitle": "Éducation",
+    "educationDegree": "Diplôme d'études collégiales (DEC) - Technologie de l'informatique",
+    "educationDates": "Septembre 2022 - Mai 2025",
+    "educationDescription": "Programme complet axé sur le développement logiciel, les réseaux et les systèmes informatiques, préparant les étudiants aux carrières technologiques.",
+
+    "certificationsTitle": "Certifications",
+    "certificationName": "Programme Accélérateur IA",
+    "certificationDates": "Septembre 2024 - Décembre 2024",
+    "certificationInstitution": "Dawson College AI Launch Lab, en partenariat avec Mitacs",
+    "certificationDetail1": "Développement de compétences en Python et apprentissage automatique grâce à des ateliers interactifs et un projet d'équipe.",
+    "certificationDetail2": "Engagement avec des experts en IA sur l'éthique et les techniques avancées d'apprentissage automatique.",
+
+    "experienceTitle": "Expérience Professionnelle",
+
+    "job1": {
+      "title": "Analyste de Données",
+      "dates": "Avril 2024 - Septembre 2024",
+      "company": "Telus International AI Data Solutions, Montréal, QC",
+      "detail1": "Évaluation des réponses générées par l'IA pour leur exactitude et leur pertinence selon des directives strictes.",
+      "detail2": "Analyse de diverses entrées de données comme Google Maps, l'audio et les images pour assurer leur exactitude.",
+      "detail3": "Recherche et correction des incohérences de données pour améliorer la précision des rapports."
+    },
+
+    "job2": {
+      "title": "Tuteur/Assistant Enseignant en Informatique",
+      "dates": "Septembre 2024 - Présent",
+      "company": "Champlain College St-Lambert, St-Lambert, QC",
+      "detail1": "Aide aux étudiants de première et deuxième année dans la programmation Python, en mettant l'accent sur l'automatisation et le traitement des données avec Pandas, Openpyxl et Matplotlib.",
+      "detail2": "Assistance aux étudiants pour utiliser Python dans des tâches Excel, améliorant ainsi leurs compétences en automatisation et en résolution de problèmes.",
+      "detail3": "Animation d'ateliers de codage pratiques et de sessions de débogage pour aider les étudiants à comprendre les concepts de programmation et à écrire un code efficace et maintenable."
+    }
+  },
+  "about": {
+    "name": "Nom",
+    "profile": "Profil",
+    "fullStackDeveloper": "Développeur Full Stack",
+    "email": "Email",
+    "emailPlaceholder": "Envoyez-moi un email ci-dessous",
+    "title": "À Propos de Moi",
+    "description1": "Je prospère à l'intersection du développement logiciel, de la résolution de problèmes et de la collaboration. En tant qu'analyste IA et données chez Telus, j'ai optimisé les pipelines de données et assuré l'exactitude des grands ensembles de données. Mon expertise couvre le développement full stack, les microservices et les services web, utilisant Java, Python, Flask, React.js, TypeScript et MongoDB pour créer des applications évolutives.",
+    "description2": "À l'école, j'ai travaillé en équipe Scrum sur des projets impliquant des backends Java Spring Boot, des API RESTful, des frontends React/TypeScript et des microservices cloud. Au-delà du codage, mon expérience au Centre Bell a renforcé ma capacité à communiquer efficacement et à performer sous pression.",
+    "description3": "Je suis enthousiaste à l'idée d'apporter mon expertise technique, mon esprit d'équipe et mon adaptabilité pour contribuer à des solutions innovantes et au succès de votre organisation."
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "Voici ce que j'ai construit"
+  },
+
+  "testimonials": {
+    "title": "Témoignages",
+    "subtitle": "N'oubliez pas de laisser un témoignage !",
+    "addTestimonialButton": "Ajouter un témoignage",
+    "modalTitle": "Ajouter un témoignage",
+    "name": "Nom",
+    "titleLabel": "Titre",
+    "message": "Message",
+    "submitButton": "Ajouter un témoignage"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Remplissez le formulaire pour m'envoyer un email",
+    "emailPlaceholder": "Votre Email",
+    "subjectPlaceholder": "Objet",
+    "messagePlaceholder": "Message",
+    "sendButton": "Envoyer le Message",
+    "successMessage": "Email envoyé avec succès",
+    "errorMessage": "Échec de l'envoi de l'email"
+  },
+  "auth": {
+    "loginTitle": "Bienvenue",
+    "loginSubtitle": "Connectez-vous pour continuer",
+    "registerTitle": "Créer un compte",
+    "registerSubtitle": "Rejoignez-nous aujourd'hui",
+    "username": "Nom d'utilisateur",
+    "usernamePlaceholder": "Entrez votre nom d'utilisateur",
+    "password": "Mot de passe",
+    "passwordPlaceholder": "Entrez votre mot de passe",
+    "loginButton": "Se connecter",
+    "registerButton": "S'inscrire",
+    "noAccount": "Vous n'avez pas de compte?",
+    "registerLink": "S'inscrire",
+    "hasAccount": "Vous avez déjà un compte?",
+    "loginLink": "Se connecter"
+  },
+  "footer": {
+    "copyright": "Droits d'auteur",
+    "rights": "Tous droits réservés"
+  },
+  "hero": {
+    "title": "Je suis Ioannis Panaritis",
+    "role1": "Concepteur",
+    "role2": "Développeur"
+  }
+}

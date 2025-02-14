@@ -1,10 +1,10 @@
 <template>
-   <div class="container section-title" data-aos="fade-up">
-      <h2>Testimonials</h2>
-      <p>Don't forget to leave a testimonial!</p>
-    </div>
+  <div class="container section-title" data-aos="fade-up">
+    <h2>{{ $t("testimonials.title") }}</h2>
+    <p>{{ $t("testimonials.subtitle") }}</p>
+  </div>
+
   <section id="testimonials" class="testimonials section accent-background">
-   
     <div class="container">
       <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -13,7 +13,7 @@
             :aria-label="'Slide ' + (index + 1)"></button>
         </div>
 
-        <!-- Carousel Items -->
+        <!-- Carousel Items (Not Translated) -->
         <div class="carousel-inner">
           <div v-for="(testimonial, index) in filteredTestimonials" :key="testimonial._id"
             :class="['carousel-item', { active: index === 0 }]">
@@ -29,7 +29,7 @@
           </div>
         </div>
 
-        <!-- Controls -->
+        <!-- Controls (Not Translated) -->
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
           data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -41,8 +41,11 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
+
       <div class="d-flex">
-        <button class="btn btn-custom mt-5 ms-auto" @click="showAddTestimonialModal">Add testimonial</button>
+        <button class="btn btn-custom mt-5 ms-auto" @click="showAddTestimonialModal">
+          {{ $t("testimonials.addTestimonialButton") }}
+        </button>
       </div>
     </div>
   </section>
@@ -53,31 +56,35 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="addTestimonialModalLabel">Add Testimonial</h5>
+          <h5 class="modal-title" id="addTestimonialModalLabel">
+            {{ $t("testimonials.modalTitle") }}
+          </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form @submit.prevent="addTestimonial">
             <div class="mb-3">
-              <label for="testimonialName" class="form-label">Name</label>
+              <label for="testimonialName" class="form-label">{{ $t("testimonials.name") }}</label>
               <input type="text" class="form-control" id="testimonialName" v-model="newTestimonial.name" required>
             </div>
             <div class="mb-3">
-              <label for="testimonialTitle" class="form-label">Title</label>
+              <label for="testimonialTitle" class="form-label">{{ $t("testimonials.titleLabel") }}</label>
               <input type="text" class="form-control" id="testimonialTitle" v-model="newTestimonial.title" required>
             </div>
             <div class="mb-3">
-              <label for="testimonialMessage" class="form-label">Message</label>
-              <textarea class="form-control" id="testimonialMessage" required
-                v-model="newTestimonial.message"></textarea>
+              <label for="testimonialMessage" class="form-label">{{ $t("testimonials.message") }}</label>
+              <textarea class="form-control" id="testimonialMessage" required v-model="newTestimonial.message"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Add Testimonial</button>
+            <button type="submit" class="btn btn-primary">
+              {{ $t("testimonials.submitButton") }}
+            </button>
           </form>
         </div>
       </div>
     </div>
   </div>
 </template>
+
 
 <script setup>
 import { ref, onMounted, computed } from 'vue';

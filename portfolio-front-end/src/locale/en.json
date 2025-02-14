@@ -1,0 +1,114 @@
+{
+  "navigation": {
+    "hello": "Hello",
+    "home": "Home",
+    "about": "About",
+    "resume": "Resume",
+    "portfolio": "Portfolio",
+    "testimonials": "Testimonials",
+    "contact": "Contact",
+    "adminPanel": "Admin Panel",
+    "registerLogin": "Account",
+    "logout": "Logout"
+  },
+  "resume": {
+    "title": "Resume",
+    "downloadResume": "Download {resumeLink} if you want to see more!",
+
+    "summaryTitle": "Summary",
+    "summaryDescription": "Innovative and deadline-driven Software Developer with 2+ years of experience developing user-centered applications from initial concept to final, polished deliverable.",
+
+    "educationTitle": "Education",
+    "educationDegree": "Diploma of College Studies (DEC) - Computer Science Technology",
+    "educationDates": "September 2022 - May 2025",
+    "educationDescription": "Comprehensive program focused on software development, networking, and IT systems, preparing students for careers in the tech industry.",
+
+    "certificationsTitle": "Certifications",
+    "certificationName": "AI Accelerator Program",
+    "certificationDates": "September 2024 - December 2024",
+    "certificationInstitution": "Dawson College AI Launch Lab, in partnership with Mitacs",
+    "certificationDetail1": "Developed Python and machine learning skills through interactive workshops and a team project.",
+    "certificationDetail2": "Engaged with AI experts on ethics and advanced machine learning techniques.",
+
+    "experienceTitle": "Professional Experience",
+
+    "job1": {
+      "title": "Data Analyst",
+      "dates": "April 2024 - September 2024",
+      "company": "Telus International AI Data Solutions, Montreal, QC",
+      "detail1": "Assessed AI-generated responses for accuracy and relevance according to strict guidelines.",
+      "detail2": "Evaluated diverse data inputs like Google Maps, audio, and images for accuracy.",
+      "detail3": "Conducted research to resolve data inconsistencies, improving report precision."
+    },
+
+    "job2": {
+      "title": "Tutor/Teacher Assistant for Computer Science",
+      "dates": "September 2024 - Present",
+      "company": "Champlain College St-Lambert, St-Lambert, QC",
+      "detail1": "Provided guidance to first and second-year students on Python programming, focusing on automation scripts and data processing using Pandas, Openpyxl, and Matplotlib.",
+      "detail2": "Assisted students in leveraging Python for Excel-based tasks, enhancing their problem-solving and automation skills.",
+      "detail3": "Facilitated hands-on coding workshops and debugging sessions, helping students understand core programming concepts and improve their ability to write efficient, maintainable code."
+    }
+  },
+  "about": {
+    "name": "Name",
+    "profile": "Profile",
+    "fullStackDeveloper": "Full Stack Developer",
+    "email": "Email",
+    "emailPlaceholder": "Email me below",
+    "title": "About Me",
+    "description1": "I thrive at the intersection of software development, problem-solving, and collaboration. As an AI & Data Analyst at Telus, I refined data pipelines and ensured accuracy in large-scale datasets. My expertise spans full-stack development, microservices, and web services, utilizing Java, Python, Flask, React.js, TypeScript, and MongoDB to build scalable applications.",
+    "description2": "In school, I worked in Scrum teams on projects involving Java Spring Boot backends, RESTful APIs, React/TypeScript frontends, and cloud-based microservices. Beyond coding, my experience at the Bell Center strengthened my ability to communicate effectively and perform under pressure.",
+    "description3": "I’m eager to bring my technical expertise, teamwork, and adaptability to contribute to innovative solutions and drive success in your organization."
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "Here is what I have built"
+  },
+
+  "testimonials": {
+    "title": "Testimonials",
+    "subtitle": "Don't forget to leave a testimonial!",
+    "addTestimonialButton": "Add Testimonial",
+    "modalTitle": "Add Testimonial",
+    "name": "Name",
+    "titleLabel": "Title",
+    "message": "Message",
+    "submitButton": "Add Testimonial"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Fill out the form to send me an email",
+    "emailPlaceholder": "Your Email",
+    "subjectPlaceholder": "Subject",
+    "messagePlaceholder": "Message",
+    "sendButton": "Send Message",
+    "successMessage": "Email sent successfully",
+    "errorMessage": "Failed to send email"
+  },
+  "auth": {
+    "loginTitle": "Welcome Back",
+    "loginSubtitle": "Log in to continue",
+    "registerTitle": "Create an Account",
+    "registerSubtitle": "Join us today",
+    "username": "Username",
+    "usernamePlaceholder": "Enter username",
+    "password": "Password",
+    "passwordPlaceholder": "Enter password",
+    "loginButton": "Login",
+    "registerButton": "Register",
+    "noAccount": "Don't have an account?",
+    "registerLink": "Register",
+    "hasAccount": "Already have an account?",
+    "loginLink": "Log in"
+  },
+  "footer": {
+    "copyright": "Copyright",
+    "rights": "All Rights Reserved"
+  },
+  "hero": {
+    "title": "I am Ioannis Panaritis",
+    "role1": "Designer",
+    "role2": "Developer"
+  }
+}

@@ -3,25 +3,25 @@
     <!-- Main Content -->
     <div class="auth-container flex-grow-1">
       <div class="auth-card">
-        <h2 class="text-center mb-3">Create an Account</h2>
-        <p class="text-center text-muted">Join us today</p>
+        <h2 class="text-center mb-3">{{ $t("auth.registerTitle") }}</h2>
+        <p class="text-center text-muted">{{ $t("auth.registerSubtitle") }}</p>
 
         <form @submit.prevent="handleRegister">
           <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input v-model="username" type="text" class="form-control" id="username" placeholder="Enter username" required>
+            <label for="username" class="form-label">{{ $t("auth.username") }}</label>
+            <input v-model="username" type="text" class="form-control" id="username" :placeholder="$t('auth.usernamePlaceholder')" required>
           </div>
 
           <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input v-model="password" type="password" class="form-control" id="password" placeholder="Enter password" required>
+            <label for="password" class="form-label">{{ $t("auth.password") }}</label>
+            <input v-model="password" type="password" class="form-control" id="password" :placeholder="$t('auth.passwordPlaceholder')" required>
           </div>
 
-          <button type="submit" class="btn btn-success w-100">Register</button>
+          <button type="submit" class="btn btn-success w-100">{{ $t("auth.registerButton") }}</button>
         </form>
 
         <p class="text-center mt-3">
-          Already have an account? <a href="/login" class="text-decoration-none">Log in</a>
+          {{ $t("auth.hasAccount") }} <a href="/login" class="text-decoration-none">{{ $t("auth.loginLink") }}</a>
         </p>
       </div>
     </div>

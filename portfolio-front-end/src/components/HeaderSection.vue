@@ -9,16 +9,16 @@
         <!-- Dropdown replaces logo when logged in -->
         <div v-if="user" class="dropdown user-dropdown-container">
           <a href="#" class="nav-link user-dropdown">
-            <span>Hello, <strong>{{ user.username }}</strong></span>
+            <span>{{ $t("navigation.hello") }}, <strong>{{ user.username }}</strong></span>
             <i class="bi bi-chevron-down toggle-dropdown" style="color: orange; padding-left: .2vw;"></i>
           </a>
 
           <ul class="dropdown-menu user-menu">
             <li v-if="user.role === 'admin'">
-              <router-link to="/admin-panel">Admin Panel</router-link>
+              <router-link to="/admin-panel">{{ $t("navigation.adminPanel") }}</router-link>
             </li>
             <li>
-              <a href="#" @click.prevent="logout">Logout</a>
+              <a href="#" @click.prevent="logout">{{ $t("navigation.logout") }}</a>
             </li>
           </ul>
         </div>
@@ -27,36 +27,43 @@
       <!-- Navigation Menu -->
       <nav id="navmenu" class="navmenu" :class="{ 'navmenu-mobile': isMobileMenuOpen }">
         <ul>
-          <li><a href="/#hero">Home</a></li>
-          <li><a href="/#about">About</a></li>
-          <li><a href="/#resume">Resume</a></li>
-          <li><a href="/#portfolio">Portfolio</a></li>
-          <li><a href="/#testimonials">Testimonials</a></li>
-          <li><a href="/#contact">Contact</a></li>
+          <li><a href="/#hero">{{ $t("navigation.home") }}</a></li>
+          <li><a href="/#about">{{ $t("navigation.about") }}</a></li>
+          <li><a href="/#resume">{{ $t("navigation.resume") }}</a></li>
+          <li><a href="/#portfolio">{{ $t("navigation.portfolio") }}</a></li>
+          <li><a href="/#testimonials">{{ $t("navigation.testimonials") }}</a></li>
+          <li><a href="/#contact">{{ $t("navigation.contact") }}</a></li>
 
           <!-- Register & Login (Visible for Guests) -->
-          <li v-if="!user" style="color: #f39c12;"><router-link to="/register">Register / Log In</router-link></li>
+          <li v-if="!user" style="color: #f39c12;"><router-link to="/register">{{ $t("navigation.registerLogin") }}</router-link></li>
+
+          <!-- Language Toggle Button -->
+          <li class="language-toggle">
+            <button @click="toggleLanguage" class="btn btn-outline-light">
+              {{ locale === 'en' ? 'EN' : 'FR' }}
+            </button>
+          </li>
         </ul>
 
         <!-- Mobile Toggle Button - Removed d-xl-none -->
-        <i class="mobile-nav-toggle bi" 
-           :class="{ 'bi-list': !isMobileMenuOpen, 'bi-x': isMobileMenuOpen }" 
-           @click="toggleMobileMenu"></i>
+        <i class="mobile-nav-toggle bi" :class="{ 'bi-list': !isMobileMenuOpen, 'bi-x': isMobileMenuOpen }"
+          @click="toggleMobileMenu"></i>
       </nav>
     </div>
   </header>
 </template>
 
 <script setup>
-// Script remains the same as before
 import { ref, onMounted, watchEffect } from "vue";
 import { useRouter } from "vue-router";
 import authService from "@/services/authService";
+import { useI18n } from "vue-i18n";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const router = useRouter();
 const user = ref(null);
 const isMobileMenuOpen = ref(false);
+const { locale } = useI18n();
 
 const updateUser = async () => {
   user.value = await authService.getUser();
@@ -65,7 +72,7 @@ const updateUser = async () => {
 onMounted(() => {
   updateUser();
   window.addEventListener("auth-change", updateUser);
-  
+
   document.addEventListener('click', (e) => {
     const navmenu = document.querySelector("#navmenu");
     const toggle = document.querySelector(".mobile-nav-toggle");
@@ -92,10 +99,14 @@ const logout = () => {
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
 };
+
+// Toggle language function
+const toggleLanguage = () => {
+  locale.value = locale.value === 'en' ? 'fr' : 'en';
+};
 </script>
 
 <style scoped>
-/* Previous styles remain the same until the media queries */
 .header {
   background-color: #000;
   padding: 12px 16px;
@@ -108,7 +119,6 @@ const toggleMobileMenu = () => {
   transition: color 0.3s ease-in-out;
 }
 
-/* Navigation Menu */
 .navmenu ul {
   list-style: none;
   display: flex;
@@ -116,9 +126,6 @@ const toggleMobileMenu = () => {
 
 }
 
-/* .navmenu ul li {
-  position: relative;
-} */
 
 .navmenu ul li a {
   text-decoration: none;
@@ -132,11 +139,7 @@ const toggleMobileMenu = () => {
   color: #f39c12;
 }
 
-/* User Dropdown */
-/* .user-dropdown-container {
-  position: relative;
-  display: inline-block;
-} */
+
 
 .user-dropdown {
   font-size: 1.1rem;
@@ -192,15 +195,16 @@ const toggleMobileMenu = () => {
 }
 
 .user-menu li a:hover {
-  /* background: #f39c12; */
-  color: #f39c12;;
+  color: #f39c12;
+  ;
   padding: 4px;
   border-radius: 4px;
 }
 
 /* Mobile Navigation Toggle */
 .mobile-nav-toggle {
-  display: none; /* Hidden by default */
+  display: none;
+  /* Hidden by default */
   font-size: 1.75rem;
   color: white;
   cursor: pointer;
@@ -212,7 +216,7 @@ const toggleMobileMenu = () => {
   .mobile-nav-toggle {
     display: none;
   }
-  
+
   .navmenu ul {
     display: flex !important;
     position: static;
@@ -237,7 +241,7 @@ const toggleMobileMenu = () => {
     top: 60px;
     right: -100%;
     background: rgba(0, 0, 0, 0.95);
-    width: 250px; 
+    width: 250px;
     height: auto;
     max-height: calc(100vh - 60px);
     padding: 15px 0;
@@ -302,5 +306,21 @@ const toggleMobileMenu = () => {
   .navmenu-mobile .mobile-nav-toggle {
     transform: rotate(180deg);
   }
+
+  .language-toggle button {
+    border: 1px solid #f39c12;
+    color: white;
+    font-size: 1rem;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    background: none;
+  }
+
+  .language-toggle button:hover {
+    background: #f39c12;
+    color: white;
+  }
+
 }
 </style>

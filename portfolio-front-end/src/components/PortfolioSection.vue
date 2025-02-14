@@ -1,9 +1,10 @@
 <template>
   <section id="portfolio" class="portfolio section">
     <div class="container section-title" data-aos="fade-up">
-      <h2>Portfolio</h2>
-      <p>Here is what I have built</p>
+      <h2>{{ $t("portfolio.title") }}</h2>
+      <p>{{ $t("portfolio.subtitle") }}</p>
     </div>
+
     <div class="container">
       <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
         <div v-for="project in filteredProjects" :key="project.id" class="col-lg-4 col-md-6 portfolio-item">
@@ -19,7 +20,6 @@
     </div>
   </section>
 </template>
-
 
 <script setup>
 import api from '@/services/api';
