@@ -173,32 +173,57 @@ def get_project_by_id(projectId):
         
     return jsonify(projects)
 
-# update project
-@app.route('/project/<projectId>', methods = ['PUT'])
+@app.route('/project/<projectId>', methods=['PUT'])
 def update_project(projectId):
     project_id = ObjectId(projectId)
     updated_project = request.get_json()
-    
-    # removes '_id' from the request if it exists
+
+    # Normalize 'name'
+    if not isinstance(updated_project.get("name"), dict):
+        name_value = updated_project.get("name", "")
+        updated_project["name"] = {"en": name_value, "fr": name_value}
+
+    # Normalize 'description'
+    if not isinstance(updated_project.get("description"), dict):
+        desc_value = updated_project.get("description", "")
+        updated_project["description"] = {"en": desc_value, "fr": desc_value}
+
+    # Remove '_id' if present
     updated_project.pop('_id', None)
+    
     result = projects_collection.update_one(
         {"_id": project_id},
         {"$set": updated_project}
     )
+    
     if result.matched_count > 0:
-        return jsonify({"message": f"Sucessfully updated project with ID: {project_id}"}),200
+        return jsonify({"message": f"Successfully updated project with ID: {project_id}"}), 200
     else:
-        return jsonify({"error": f"Failed to delete testimonial with ID: {project_id}"}), 404
+        return jsonify({"error": f"Failed to update project with ID: {project_id}"}), 404
+
     
     
-# Add new Project
 @app.route('/projects', methods=['POST'])
 def add_project():
     new_project = request.get_json()
-    # new_project['status'] = 'shown'  # Ensure each new project has a status of 'hidden'
+
+    # Normalize the 'name' field: if it's not a dict, create one with the same value for 'en' and 'fr'
+    if not isinstance(new_project.get("name"), dict):
+        name_value = new_project.get("name", "")
+        new_project["name"] = {"en": name_value, "fr": name_value}
+
+    # Normalize the 'description' field similarly
+    if not isinstance(new_project.get("description"), dict):
+        desc_value = new_project.get("description", "")
+        new_project["description"] = {"en": desc_value, "fr": desc_value}
+
+    # Optionally, enforce a default status if not provided
+    if "status" not in new_project:
+        new_project["status"] = "shown"
+
     projects_collection.insert_one(new_project)
     
-    return jsonify({"message" : "Project added successfully!"}), 200
+    return jsonify({"message": "Project added successfully!"}), 200
 
 
 # Delete project
