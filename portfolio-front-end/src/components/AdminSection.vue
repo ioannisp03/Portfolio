@@ -1,18 +1,16 @@
 <template>
-    
     <div class="d-flex flex-column min-vh-100">
         <div class="container mt-4 flex-grow-1">
             <!-- Responsive Tab Navigation -->
             <ul class="nav nav-tabs justify-content-left">
                 <li class="nav-item">
                     <a class="nav-link" :class="{ active: currentTab === 'projects' }" @click="currentTab = 'projects'">
-                        Projects
+                        {{ $t('adminPanel.projects') }}
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" :class="{ active: currentTab === 'testimonials' }"
-                        @click="currentTab = 'testimonials'">
-                        Testimonials
+                    <a class="nav-link" :class="{ active: currentTab === 'testimonials' }" @click="currentTab = 'testimonials'">
+                        {{ $t('adminPanel.testimonials') }}
                     </a>
                 </li>
             </ul>
@@ -20,18 +18,20 @@
             <div class="tab-content mt-3">
                 <!-- Projects Tab -->
                 <div v-if="currentTab === 'projects'">
-                    <h2 class="text-center">Projects</h2>
-                    <button class="btn btn-primary mb-3" @click="showAddProjectModal">Add Project</button>
+                    <h2 class="text-center">{{ $t('adminPanel.projects') }}</h2>
+                    <button class="btn btn-primary mb-3" @click="showAddProjectModal">
+                        {{ $t('adminPanel.buttons.addProject') }}
+                    </button>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered">
                             <thead class="thead-light">
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Image</th>
-                                    <th>Description</th>
-                                    <th>Github Link</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
+                                    <th>{{ $t('adminPanel.projectFields.name') }}</th>
+                                    <th>{{ $t('adminPanel.projectFields.image') }}</th>
+                                    <th>{{ $t('adminPanel.projectFields.description') }}</th>
+                                    <th>{{ $t('adminPanel.projectFields.githubLink') }}</th>
+                                    <th>{{ $t('adminPanel.projectFields.status') }}</th>
+                                    <th>{{ $t('adminPanel.projectFields.actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,25 +42,21 @@
                                     </td>
                                     <td class="text-truncate" style="max-width: 200px;">{{ project.description }}</td>
                                     <td>
-                                        <a :href="project.github_link" target="_blank"
-                                            class="text-truncate d-inline-block" style="max-width: 150px;">
+                                        <a :href="project.github_link" target="_blank" class="text-truncate d-inline-block" style="max-width: 150px;">
                                             {{ project.github_link }}
                                         </a>
                                     </td>
-                                    <td
-                                        :class="{ 'text-success': project.status === 'shown', 'text-danger': project.status === 'hidden' }">
-                                        {{ project.status }}
+                                    <td :class="{ 'text-success': project.status === 'shown', 'text-danger': project.status === 'hidden' }">
+                                        {{ $t(`adminPanel.statusOptions.${project.status}`) }}
                                     </td>
-
-                                    <!-- Delete button -->
                                     <td class="d-flex flex-wrap gap-2">
                                         <button @click="deleteProject(project._id)" class="btn btn-danger btn-sm">
-
                                             <i class="bi bi-x-square-fill"></i>
+                                            {{ $t('adminPanel.buttons.delete') }}
                                         </button>
-                                        <!-- Edit button -->
                                         <button @click="showUpdateProjectModal(project)" class="btn btn-warning btn-sm">
                                             <i class="bi bi-pencil-square"></i>
+                                            {{ $t('adminPanel.buttons.edit') }}
                                         </button>
                                     </td>
                                 </tr>
@@ -71,17 +67,19 @@
 
                 <!-- Testimonials Tab -->
                 <div v-if="currentTab === 'testimonials'">
-                    <h2 class="text-center">Testimonials</h2>
-                    <button class="btn btn-primary mb-3" @click="showAddTestimonialModal">Add Testimonial</button>
+                    <h2 class="text-center">{{ $t('adminPanel.testimonials') }}</h2>
+                    <button class="btn btn-primary mb-3" @click="showAddTestimonialModal">
+                        {{ $t('adminPanel.buttons.addTestimonial') }}
+                    </button>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered">
                             <thead class="thead-light">
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Title</th>
-                                    <th>Message</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
+                                    <th>{{ $t('adminPanel.testimonialFields.name') }}</th>
+                                    <th>{{ $t('adminPanel.testimonialFields.title') }}</th>
+                                    <th>{{ $t('adminPanel.testimonialFields.message') }}</th>
+                                    <th>{{ $t('adminPanel.testimonialFields.status') }}</th>
+                                    <th>{{ $t('adminPanel.testimonialFields.actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -89,15 +87,17 @@
                                     <td>{{ testimonial.name }}</td>
                                     <td>{{ testimonial.title }}</td>
                                     <td class="text-truncate" style="max-width: 200px;">{{ testimonial.message }}</td>
-                                    <td
-                                        :class="{ 'text-success': testimonial.status === 'shown', 'text-danger': testimonial.status === 'hidden' }">
-                                        {{ testimonial.status }}
+                                    <td :class="{ 'text-success': testimonial.status === 'shown', 'text-danger': testimonial.status === 'hidden' }">
+                                        {{ $t(`adminPanel.statusOptions.${testimonial.status}`) }}
                                     </td>
                                     <td class="d-flex flex-wrap gap-2">
-                                        <button @click="deleteTestimonial(testimonial._id)"
-                                            class="btn btn-danger btn-sm"><i class="bi bi-x-square-fill"></i></button>
+                                        <button @click="deleteTestimonial(testimonial._id)" class="btn btn-danger btn-sm">
+                                            <i class="bi bi-x-square-fill"></i>
+                                            {{ $t('adminPanel.buttons.delete') }}
+                                        </button>
                                         <button @click="showUpdateTestimonialModal(testimonial)" class="btn btn-warning btn-sm">
                                             <i class="bi bi-pencil-square"></i>
+                                            {{ $t('adminPanel.buttons.edit') }}
                                         </button>
                                     </td>
                                 </tr>
@@ -109,44 +109,41 @@
         </div>
 
         <!-- Modal for adding a project -->
-        <div class="modal fade" id="addProjectModal" tabindex="-1" aria-labelledby="addProjectModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="addProjectModal" tabindex="-1" aria-labelledby="addProjectModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="addProjectModalLabel">Add Project</h5>
+                        <h5 class="modal-title" id="addProjectModalLabel">{{ $t('adminPanel.modalTitleAddProject') }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form @submit.prevent="addProject">
                             <div class="mb-3">
-                                <label for="projectName" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="projectName" v-model="newProject.name"
-                                    required>
+                                <label for="projectName" class="form-label">{{ $t('adminPanel.projectFields.name') }}</label>
+                                <input type="text" class="form-control" id="projectName" v-model="newProject.name" required>
                             </div>
                             <div class="mb-3">
-                                <label for="projectImage" class="form-label">Image URL</label>
-                                <input type="text" class="form-control" id="projectImage" v-model="newProject.image"
-                                    required>
+                                <label for="projectImage" class="form-label">{{ $t('adminPanel.projectFields.image') }}</label>
+                                <input type="text" class="form-control" id="projectImage" v-model="newProject.image" required>
                             </div>
                             <div class="mb-3">
-                                <label for="projectDescription" class="form-label">Description</label>
-                                <textarea class="form-control" id="projectDescription" required
-                                    v-model="newProject.description"></textarea>
+                                <label for="projectDescription" class="form-label">{{ $t('adminPanel.projectFields.description') }}</label>
+                                <textarea class="form-control" id="projectDescription" required v-model="newProject.description"></textarea>
                             </div>
                             <div class="mb-3">
-                                <label for="projectGithubLink" class="form-label">Github Link</label>
-                                <input type="text" class="form-control" id="projectGithubLink" required
-                                    v-model="newProject.github_link">
+                                <label for="projectGithubLink" class="form-label">{{ $t('adminPanel.projectFields.githubLink') }}</label>
+                                <input type="text" class="form-control" id="projectGithubLink" required v-model="newProject.github_link">
                             </div>
                             <div class="mb-3">
-                                <label for="projectStatus" class="form-label">Status</label>
+                                <label for="projectStatus" class="form-label">{{ $t('adminPanel.projectFields.status') }}</label>
                                 <select class="form-control" id="projectStatus" v-model="newProject.status" required>
-                                    <option value="shown">shown</option>
-                                    <option value="hidden">hidden</option>
+                                    <option value="shown">{{ $t('adminPanel.statusOptions.shown') }}</option>
+                                    <option value="hidden">{{ $t('adminPanel.statusOptions.hidden') }}</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary">Add Project</button>
+                            <button type="submit" class="btn btn-primary">
+                                {{ $t('adminPanel.buttons.addProject') }}
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -154,44 +151,41 @@
         </div>
 
         <!-- Modal for updating a project -->
-        <div class="modal fade" id="updateProjectModal" tabindex="-1" aria-labelledby="updateProjectModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="updateProjectModal" tabindex="-1" aria-labelledby="updateProjectModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="updateProjectModalLabel">Update Project</h5>
+                        <h5 class="modal-title" id="updateProjectModalLabel">{{ $t('adminPanel.modalTitleUpdateProject') }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form @submit.prevent="updateProject">
                             <div class="mb-3">
-                                <label for="updateProjectName" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="updateProjectName" v-model="currentProject.name"
-                                    required>
+                                <label for="updateProjectName" class="form-label">{{ $t('adminPanel.projectFields.name') }}</label>
+                                <input type="text" class="form-control" id="updateProjectName" v-model="currentProject.name" required>
                             </div>
                             <div class="mb-3">
-                                <label for="updateProjectImage" class="form-label">Image URL</label>
-                                <input type="text" class="form-control" id="updateProjectImage" v-model="currentProject.image"
-                                    required>
+                                <label for="updateProjectImage" class="form-label">{{ $t('adminPanel.projectFields.image') }}</label>
+                                <input type="text" class="form-control" id="updateProjectImage" v-model="currentProject.image" required>
                             </div>
                             <div class="mb-3">
-                                <label for="updateProjectDescription" class="form-label">Description</label>
-                                <textarea class="form-control" id="updateProjectDescription" required
-                                    v-model="currentProject.description"></textarea>
+                                <label for="updateProjectDescription" class="form-label">{{ $t('adminPanel.projectFields.description') }}</label>
+                                <textarea class="form-control" id="updateProjectDescription" required v-model="currentProject.description"></textarea>
                             </div>
                             <div class="mb-3">
-                                <label for="updateProjectGithubLink" class="form-label">Github Link</label>
-                                <input type="text" class="form-control" id="updateProjectGithubLink" required
-                                    v-model="currentProject.github_link">
+                                <label for="updateProjectGithubLink" class="form-label">{{ $t('adminPanel.projectFields.githubLink') }}</label>
+                                <input type="text" class="form-control" id="updateProjectGithubLink" required v-model="currentProject.github_link">
                             </div>
                             <div class="mb-3">
-                                <label for="updateProjectStatus" class="form-label">Status</label>
+                                <label for="updateProjectStatus" class="form-label">{{ $t('adminPanel.projectFields.status') }}</label>
                                 <select class="form-control" id="updateProjectStatus" v-model="currentProject.status" required>
-                                    <option value="shown">shown</option>
-                                    <option value="hidden">hidden</option>
+                                    <option value="shown">{{ $t('adminPanel.statusOptions.shown') }}</option>
+                                    <option value="hidden">{{ $t('adminPanel.statusOptions.hidden') }}</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary">Update Project</button>
+                            <button type="submit" class="btn btn-primary">
+                                {{ $t('adminPanel.buttons.updateProject') }}
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -199,40 +193,37 @@
         </div>
 
         <!-- Modal for adding a testimonial -->
-        <div class="modal fade" id="addTestimonialModal" tabindex="-1" aria-labelledby="addTestimonialModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="addTestimonialModal" tabindex="-1" aria-labelledby="addTestimonialModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="addTestimonialModalLabel">Add Testimonial</h5>
+                        <h5 class="modal-title" id="addTestimonialModalLabel">{{ $t('adminPanel.modalTitleAddTestimonial') }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form @submit.prevent="addTestimonial">
                             <div class="mb-3">
-                                <label for="testimonialName" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="testimonialName"
-                                    v-model="newTestimonial.name" required>
+                                <label for="testimonialName" class="form-label">{{ $t('adminPanel.testimonialFields.name') }}</label>
+                                <input type="text" class="form-control" id="testimonialName" v-model="newTestimonial.name" required>
                             </div>
                             <div class="mb-3">
-                                <label for="testimonialTitle" class="form-label">Title</label>
-                                <input type="text" class="form-control" id="testimonialTitle"
-                                    v-model="newTestimonial.title" required>
+                                <label for="testimonialTitle" class="form-label">{{ $t('adminPanel.testimonialFields.title') }}</label>
+                                <input type="text" class="form-control" id="testimonialTitle" v-model="newTestimonial.title" required>
                             </div>
                             <div class="mb-3">
-                                <label for="testimonialMessage" class="form-label">Message</label>
-                                <textarea class="form-control" id="testimonialMessage" required
-                                    v-model="newTestimonial.message"></textarea>
+                                <label for="testimonialMessage" class="form-label">{{ $t('adminPanel.testimonialFields.message') }}</label>
+                                <textarea class="form-control" id="testimonialMessage" required v-model="newTestimonial.message"></textarea>
                             </div>
                             <div class="mb-3">
-                                <label for="testimonialStatus" class="form-label">Status</label>
-                                <select class="form-control" id="testimonialStatus" v-model="newTestimonial.status"
-                                    required>
-                                    <option value="shown">shown</option>
-                                    <option value="hidden">hidden</option>
+                                <label for="testimonialStatus" class="form-label">{{ $t('adminPanel.testimonialFields.status') }}</label>
+                                <select class="form-control" id="testimonialStatus" v-model="newTestimonial.status" required>
+                                    <option value="shown">{{ $t('adminPanel.statusOptions.shown') }}</option>
+                                    <option value="hidden">{{ $t('adminPanel.statusOptions.hidden') }}</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary">Add Testimonial</button>
+                            <button type="submit" class="btn btn-primary">
+                                {{ $t('adminPanel.buttons.addTestimonial') }}
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -240,39 +231,37 @@
         </div>
 
         <!-- Modal for updating a testimonial -->
-        <div class="modal fade" id="updateTestimonialModal" tabindex="-1" aria-labelledby="updateTestimonialModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="updateTestimonialModal" tabindex="-1" aria-labelledby="updateTestimonialModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="updateTestimonialModalLabel">Update Testimonial</h5>
+                        <h5 class="modal-title" id="updateTestimonialModalLabel">{{ $t('adminPanel.modalTitleUpdateTestimonial') }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form @submit.prevent="updateTestimonial">
                             <div class="mb-3">
-                                <label for="updateTestimonialName" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="updateTestimonialName" v-model="currentTestimonial.name"
-                                    required>
+                                <label for="updateTestimonialName" class="form-label">{{ $t('adminPanel.testimonialFields.name') }}</label>
+                                <input type="text" class="form-control" id="updateTestimonialName" v-model="currentTestimonial.name" required>
                             </div>
                             <div class="mb-3">
-                                <label for="updateTestimonialTitle" class="form-label">Title</label>
-                                <input type="text" class="form-control" id="updateTestimonialTitle" v-model="currentTestimonial.title"
-                                    required>
+                                <label for="updateTestimonialTitle" class="form-label">{{ $t('adminPanel.testimonialFields.title') }}</label>
+                                <input type="text" class="form-control" id="updateTestimonialTitle" v-model="currentTestimonial.title" required>
                             </div>
                             <div class="mb-3">
-                                <label for="updateTestimonialMessage" class="form-label">Message</label>
-                                <textarea class="form-control" id="updateTestimonialMessage" required
-                                    v-model="currentTestimonial.message"></textarea>
+                                <label for="updateTestimonialMessage" class="form-label">{{ $t('adminPanel.testimonialFields.message') }}</label>
+                                <textarea class="form-control" id="updateTestimonialMessage" required v-model="currentTestimonial.message"></textarea>
                             </div>
                             <div class="mb-3">
-                                <label for="updateTestimonialStatus" class="form-label">Status</label>
+                                <label for="updateTestimonialStatus" class="form-label">{{ $t('adminPanel.testimonialFields.status') }}</label>
                                 <select class="form-control" id="updateTestimonialStatus" v-model="currentTestimonial.status" required>
-                                    <option value="shown">shown</option>
-                                    <option value="hidden">hidden</option>
+                                    <option value="shown">{{ $t('adminPanel.statusOptions.shown') }}</option>
+                                    <option value="hidden">{{ $t('adminPanel.statusOptions.hidden') }}</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary">Update Testimonial</button>
+                            <button type="submit" class="btn btn-primary">
+                                {{ $t('adminPanel.buttons.updateTestimonial') }}
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -280,6 +269,7 @@
         </div>
     </div>
 </template>
+
 
 <script setup>
 import { ref, onMounted } from 'vue';

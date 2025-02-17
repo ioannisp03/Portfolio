@@ -70,6 +70,10 @@ const updateUser = async () => {
 };
 
 onMounted(() => {
+  const storedLocale = localStorage.getItem('locale');
+  if (storedLocale) {
+    locale.value = storedLocale;
+  }
   updateUser();
   window.addEventListener("auth-change", updateUser);
 
@@ -103,6 +107,7 @@ const toggleMobileMenu = () => {
 // Toggle language function
 const toggleLanguage = () => {
   locale.value = locale.value === 'en' ? 'fr' : 'en';
+  localStorage.setItem('locale', locale.value)
 };
 </script>
 
@@ -204,7 +209,6 @@ const toggleLanguage = () => {
 /* Mobile Navigation Toggle */
 .mobile-nav-toggle {
   display: none;
-  /* Hidden by default */
   font-size: 1.75rem;
   color: white;
   cursor: pointer;
@@ -308,7 +312,7 @@ const toggleLanguage = () => {
   }
 
   .language-toggle button {
-    border: 1px solid #f39c12;
+    /* border: 1px solid #f39c12; */
     color: white;
     font-size: 1rem;
     padding: 5px 10px;
@@ -318,8 +322,8 @@ const toggleLanguage = () => {
   }
 
   .language-toggle button:hover {
-    background: #f39c12;
-    color: white;
+    background: white;
+    color: black;
   }
 
 }

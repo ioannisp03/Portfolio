@@ -41,7 +41,6 @@ const handleRegister = () => {
 </script>
 
 <style scoped>
-/* 🌟 Layout Fix */
 .d-flex {
   display: flex;
   flex-direction: column;
@@ -55,7 +54,6 @@ const handleRegister = () => {
   min-height: 100vh;
 }
 
-/* 🌟 Auth Styles */
 .auth-container {
   display: flex;
   justify-content: center;
@@ -73,7 +71,6 @@ const handleRegister = () => {
   text-align: center;
 }
 
-/* 🌟 Footer */
 .footer {
   background: #343a40;
   color: white;

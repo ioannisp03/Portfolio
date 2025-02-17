@@ -110,5 +110,43 @@
     "title": "Je suis Ioannis Panaritis",
     "role1": "Concepteur",
     "role2": "Développeur"
+  },
+
+  "adminPanel": {
+    "projects": "Projets",
+    "testimonials": "Témoignages",
+    "addProjectButton": "Ajouter un projet",
+    "addTestimonialButton": "Ajouter un témoignage",
+    "modalTitleAddProject": "Ajouter un projet",
+    "modalTitleUpdateProject": "Mettre à jour le projet",
+    "modalTitleAddTestimonial": "Ajouter un témoignage",
+    "modalTitleUpdateTestimonial": "Mettre à jour le témoignage",
+    "projectFields": {
+      "name": "Nom",
+      "image": "Image",
+      "description": "Description",
+      "githubLink": "Lien GitHub",
+      "status": "Statut",
+      "actions": "Actions"
+    },
+    "testimonialFields": {
+      "name": "Nom",
+      "title": "Titre",
+      "message": "Message",
+      "status": "Statut",
+      "actions": "Actions"
+    },
+    "statusOptions": {
+      "shown": "Affiché",
+      "hidden": "Caché"
+    },
+    "buttons": {
+      "addProject": "Ajouter un projet",
+      "updateProject": "Mettre à jour le projet",
+      "addTestimonial": "Ajouter un témoignage",
+      "updateTestimonial": "Mettre à jour le témoignage",
+      "delete": "Supprimer",
+      "edit": "Modifier"
+    }
   }
 }

@@ -110,5 +110,43 @@
     "title": "I am Ioannis Panaritis",
     "role1": "Designer",
     "role2": "Developer"
+  },
+
+  "adminPanel": {
+    "projects": "Projects",
+    "testimonials": "Testimonials",
+    "addProjectButton": "Add Project",
+    "addTestimonialButton": "Add Testimonial",
+    "modalTitleAddProject": "Add Project",
+    "modalTitleUpdateProject": "Update Project",
+    "modalTitleAddTestimonial": "Add Testimonial",
+    "modalTitleUpdateTestimonial": "Update Testimonial",
+    "projectFields": {
+      "name": "Name",
+      "image": "Image",
+      "description": "Description",
+      "githubLink": "GitHub Link",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "testimonialFields": {
+      "name": "Name",
+      "title": "Title",
+      "message": "Message",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "statusOptions": {
+      "shown": "Shown",
+      "hidden": "Hidden"
+    },
+    "buttons": {
+      "addProject": "Add Project",
+      "updateProject": "Update Project",
+      "addTestimonial": "Add Testimonial",
+      "updateTestimonial": "Update Testimonial",
+      "delete": "Delete",
+      "edit": "Edit"
+    }
   }
 }
