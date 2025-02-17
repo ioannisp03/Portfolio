@@ -7,13 +7,19 @@
 
     <div class="container">
       <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
-        <div v-for="project in filteredProjects" :key="project.id" class="col-lg-4 col-md-6 portfolio-item">
+        <!-- Use project._id as key and display localized name/description -->
+        <div v-for="project in filteredProjects" :key="project._id" class="col-lg-4 col-md-6 portfolio-item">
           <a :href="project.github_link" target="_blank">
-            <img :src="project.image" class="img-fluid" alt="Project Image" style="width: 100%; height: 200px; object-fit: cover; border-radius: 2px; border: 1px solid black;">
+            <img
+              :src="project.image"
+              class="img-fluid"
+              alt="Project Image"
+              style="width: 100%; height: 200px; object-fit: cover; border-radius: 2px; border: 1px solid black;"
+            />
           </a>
           <div class="portfolio-info">
-            <h4>{{ project.name }}</h4>
-            <p>{{ project.description }}</p>
+            <h4>{{ project.name[$i18n.locale] || project.name.en }}</h4>
+            <p>{{ project.description[$i18n.locale] || project.description.en }}</p>
           </div>
         </div>
       </div>
@@ -25,22 +31,22 @@
 import api from '@/services/api';
 import { ref, onMounted, computed } from 'vue';
 
-const projects = ref([]); 
+const projects = ref([]);
 
-//fetch from the api
+// Fetch from the API on mount
 onMounted(async () => {
   try {
     const response = await api.getAllProjects();
     projects.value = response;
   } catch (error) {
-    console.error("Error fetching projects: ", error)
+    console.error("Error fetching projects: ", error);
   }
-})
+});
 
+// Only show projects with status "shown"
 const filteredProjects = computed(() => {
   return projects.value.filter(project => project.status === 'shown');
 });
-
 </script>
 
 <style scoped>
