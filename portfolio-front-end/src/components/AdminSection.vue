@@ -36,7 +36,6 @@
                 </thead>
                 <tbody>
                   <tr v-for="project in projects" :key="project._id">
-                    <!-- Show the name and description based on the current locale -->
                     <td>{{ project.name[$i18n.locale] || project.name.en }}</td>
                     <td>
                       <img :src="project.image" class="img-fluid img-thumbnail" alt="Project Image">
@@ -68,7 +67,6 @@
             </div>
           </div>
     
-          <!-- Testimonials Tab -->
           <div v-if="currentTab === 'testimonials'">
             <h2 class="text-center">{{ $t('adminPanel.testimonials') }}</h2>
             <button class="btn btn-primary mb-3" @click="showAddTestimonialModal">
@@ -121,37 +119,30 @@
             </div>
             <div class="modal-body">
               <form @submit.prevent="addProject">
-                <!-- Project Name (English) -->
                 <div class="mb-3">
                   <label for="projectNameEn" class="form-label">Name (English)</label>
                   <input type="text" class="form-control" id="projectNameEn" v-model="newProject.name.en" required>
                 </div>
-                <!-- Project Name (French) -->
                 <div class="mb-3">
                   <label for="projectNameFr" class="form-label">Name (French)</label>
                   <input type="text" class="form-control" id="projectNameFr" v-model="newProject.name.fr" required>
                 </div>
-                <!-- Project Image -->
                 <div class="mb-3">
                   <label for="projectImage" class="form-label">{{ $t('adminPanel.projectFields.image') }}</label>
                   <input type="text" class="form-control" id="projectImage" v-model="newProject.image" required>
                 </div>
-                <!-- Project Description (English) -->
                 <div class="mb-3">
                   <label for="projectDescriptionEn" class="form-label">Description (English)</label>
                   <textarea class="form-control" id="projectDescriptionEn" required v-model="newProject.description.en"></textarea>
                 </div>
-                <!-- Project Description (French) -->
                 <div class="mb-3">
                   <label for="projectDescriptionFr" class="form-label">Description (French)</label>
                   <textarea class="form-control" id="projectDescriptionFr" required v-model="newProject.description.fr"></textarea>
                 </div>
-                <!-- Project Github Link -->
                 <div class="mb-3">
                   <label for="projectGithubLink" class="form-label">{{ $t('adminPanel.projectFields.githubLink') }}</label>
                   <input type="text" class="form-control" id="projectGithubLink" required v-model="newProject.github_link">
                 </div>
-                <!-- Project Status -->
                 <div class="mb-3">
                   <label for="projectStatus" class="form-label">{{ $t('adminPanel.projectFields.status') }}</label>
                   <select class="form-control" id="projectStatus" v-model="newProject.status" required>
@@ -178,37 +169,30 @@
             </div>
             <div class="modal-body">
               <form @submit.prevent="updateProject">
-                <!-- Project Name (English) -->
                 <div class="mb-3">
                   <label for="editProjectNameEn" class="form-label">Name (English)</label>
                   <input type="text" class="form-control" id="editProjectNameEn" v-model="currentProject.name.en" required>
                 </div>
-                <!-- Project Name (French) -->
                 <div class="mb-3">
                   <label for="editProjectNameFr" class="form-label">Name (French)</label>
                   <input type="text" class="form-control" id="editProjectNameFr" v-model="currentProject.name.fr" required>
                 </div>
-                <!-- Project Image -->
                 <div class="mb-3">
                   <label for="editProjectImage" class="form-label">{{ $t('adminPanel.projectFields.image') }}</label>
                   <input type="text" class="form-control" id="editProjectImage" v-model="currentProject.image" required>
                 </div>
-                <!-- Project Description (English) -->
                 <div class="mb-3">
                   <label for="editProjectDescriptionEn" class="form-label">Description (English)</label>
                   <textarea class="form-control" id="editProjectDescriptionEn" required v-model="currentProject.description.en"></textarea>
                 </div>
-                <!-- Project Description (French) -->
                 <div class="mb-3">
                   <label for="editProjectDescriptionFr" class="form-label">Description (French)</label>
                   <textarea class="form-control" id="editProjectDescriptionFr" required v-model="currentProject.description.fr"></textarea>
                 </div>
-                <!-- Project Github Link -->
                 <div class="mb-3">
                   <label for="editProjectGithubLink" class="form-label">{{ $t('adminPanel.projectFields.githubLink') }}</label>
                   <input type="text" class="form-control" id="editProjectGithubLink" required v-model="currentProject.github_link">
                 </div>
-                <!-- Project Status -->
                 <div class="mb-3">
                   <label for="editProjectStatus" class="form-label">{{ $t('adminPanel.projectFields.status') }}</label>
                   <select class="form-control" id="editProjectStatus" v-model="currentProject.status" required>
