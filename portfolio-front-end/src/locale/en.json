@@ -13,10 +13,10 @@
   },
   "resume": {
     "title": "Resume",
-    "downloadResume": "Download <a id='resumeLink' href='#' @click.prevent='downloadCV'>my resume</a> if you want to see more!",
-
+    "downloadResume": "Click the button below to download my resume!",
     "summaryTitle": "Summary",
     "summaryDescription": "Innovative and deadline-driven Software Developer with 2+ years of experience developing user-centered applications from initial concept to final, polished deliverable.",
+    "downloadButton": "Download Resume",
 
     "educationTitle": "Education",
     "educationDegree": "Diploma of College Studies (DEC) - Computer Science Technology",
