@@ -267,10 +267,13 @@ def send_email():
 
 @app.route('/download-pdf')
 def download_CV_pdf():
-    cv_location = "CV\IoannisPanaritis_CV.pdf"
-    print("Printing",cv_location)
-    return send_from_directory("CV", "IoannisPanaritis_CV.pdf", as_attachment=True)
-    
+    try:
+        cv_filename = "IoannisPanaritis_CV.pdf"  # Use the new file name
+        cv_location = os.path.join("CV", cv_filename)
+        print("Serving file:", cv_location)
+        return send_from_directory("CV", cv_filename, as_attachment=True)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500  # Debugging in case of issues
 
 
 if __name__ == "__main__":
