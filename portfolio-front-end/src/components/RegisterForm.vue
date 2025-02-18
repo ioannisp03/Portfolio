@@ -8,7 +8,7 @@
         <form @submit.prevent="handleRegister">
           <div class="mb-3">
             <label for="username" class="form-label">{{ $t("auth.username") }}</label>
-            <input v-model="username" type="text" class="form-control" id="username" :placeholder="$t('auth.usernamePlaceholder')" required>
+            <input v-model="username" type="text" class="form-control" id="username" name="username" :placeholder="$t('auth.usernamePlaceholder')" required>
           </div>
 
           <div class="mb-3">
