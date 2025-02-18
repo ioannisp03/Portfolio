@@ -13,7 +13,7 @@
   },
   "resume": {
     "title": "CV",
-    "downloadResume": "Téléchargez {resumeLink} si vous voulez en voir plus!",
+    "downloadResume": "Téléchargez <a id='resumeLink' href='#' @click.prevent='downloadCV'>mon CV</a> si vous voulez en voir plus!",
 
     "summaryTitle": "Résumé",
     "summaryDescription": "Développeur logiciel innovant et axé sur les délais avec plus de 2 ans d'expérience dans le développement d'applications centrées sur l'utilisateur, de la conception initiale au produit final.",
@@ -59,7 +59,8 @@
     "title": "À Propos de Moi",
     "description1": "Je prospère à l'intersection du développement logiciel, de la résolution de problèmes et de la collaboration. En tant qu'analyste IA et données chez Telus, j'ai optimisé les pipelines de données et assuré l'exactitude des grands ensembles de données. Mon expertise couvre le développement full stack, les microservices et les services web, utilisant Java, Python, Flask, React.js, TypeScript et MongoDB pour créer des applications évolutives.",
     "description2": "À l'école, j'ai travaillé en équipe Scrum sur des projets impliquant des backends Java Spring Boot, des API RESTful, des frontends React/TypeScript et des microservices cloud. Au-delà du codage, mon expérience au Centre Bell a renforcé ma capacité à communiquer efficacement et à performer sous pression.",
-    "description3": "Je suis enthousiaste à l'idée d'apporter mon expertise technique, mon esprit d'équipe et mon adaptabilité pour contribuer à des solutions innovantes et au succès de votre organisation."
+    "description3": "Je suis enthousiaste à l'idée d'apporter mon expertise technique, mon esprit d'équipe et mon adaptabilité pour contribuer à des solutions innovantes et au succès de votre organisation.",
+    "skillsTitle": "Compétences Techniques"
   },
   "portfolio": {
     "title": "Portfolio",

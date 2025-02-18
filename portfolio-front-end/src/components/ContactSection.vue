@@ -3,8 +3,10 @@ import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Toastify from 'toastify-js';
 import api from '@/services/api';
+import "toastify-js/src/toastify.css";
 
-const { t } = useI18n(); // Get translation function
+
+const { t } = useI18n();
 
 const form = ref({
   sender_email: '',
@@ -35,6 +37,7 @@ async function submitForm() {
     }).showToast();
   }
 }
+
 </script>
 
 <template>

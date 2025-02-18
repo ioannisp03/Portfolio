@@ -13,7 +13,7 @@
   },
   "resume": {
     "title": "Resume",
-    "downloadResume": "Download {resumeLink} if you want to see more!",
+    "downloadResume": "Download <a id='resumeLink' href='#' @click.prevent='downloadCV'>my resume</a> if you want to see more!",
 
     "summaryTitle": "Summary",
     "summaryDescription": "Innovative and deadline-driven Software Developer with 2+ years of experience developing user-centered applications from initial concept to final, polished deliverable.",
@@ -59,7 +59,8 @@
     "title": "About Me",
     "description1": "I thrive at the intersection of software development, problem-solving, and collaboration. As an AI & Data Analyst at Telus, I refined data pipelines and ensured accuracy in large-scale datasets. My expertise spans full-stack development, microservices, and web services, utilizing Java, Python, Flask, React.js, TypeScript, and MongoDB to build scalable applications.",
     "description2": "In school, I worked in Scrum teams on projects involving Java Spring Boot backends, RESTful APIs, React/TypeScript frontends, and cloud-based microservices. Beyond coding, my experience at the Bell Center strengthened my ability to communicate effectively and perform under pressure.",
-    "description3": "I’m eager to bring my technical expertise, teamwork, and adaptability to contribute to innovative solutions and drive success in your organization."
+    "description3": "I’m eager to bring my technical expertise, teamwork, and adaptability to contribute to innovative solutions and drive success in your organization.",
+    "skillsTitle": "Skills"
   },
   "portfolio": {
     "title": "Portfolio",

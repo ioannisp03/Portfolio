@@ -1,5 +1,5 @@
 <template>
-  <div class="container section-title" data-aos="fade-up">
+  <div class="container section-title" data-aos="fade-up" style="padding-top: 10vh;">
     <h2>{{ $t("testimonials.title") }}</h2>
     <p>{{ $t("testimonials.subtitle") }}</p>
   </div>
@@ -13,7 +13,6 @@
             :aria-label="'Slide ' + (index + 1)"></button>
         </div>
 
-        <!-- Carousel Items (Not Translated) -->
         <div class="carousel-inner">
           <div v-for="(testimonial, index) in filteredTestimonials" :key="testimonial._id"
             :class="['carousel-item', { active: index === 0 }]">
@@ -29,7 +28,6 @@
           </div>
         </div>
 
-        <!-- Controls (Not Translated) -->
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
           data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -50,7 +48,6 @@
     </div>
   </section>
 
-  <!-- Modal for adding a testimonial -->
   <div class="modal fade" id="addTestimonialModal" tabindex="-1" aria-labelledby="addTestimonialModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
@@ -73,7 +70,8 @@
             </div>
             <div class="mb-3">
               <label for="testimonialMessage" class="form-label">{{ $t("testimonials.message") }}</label>
-              <textarea class="form-control" id="testimonialMessage" required v-model="newTestimonial.message"></textarea>
+              <textarea class="form-control" id="testimonialMessage" required
+                v-model="newTestimonial.message"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">
               {{ $t("testimonials.submitButton") }}
@@ -119,7 +117,6 @@ const addTestimonial = async () => {
   try {
     await api.addTestimonial(newTestimonial.value);
 
-    // Fetch updated testimonial list
     const updatedTestimonials = await api.getAllTestimonials();
     testimonials.value = updatedTestimonials;
 
@@ -129,7 +126,6 @@ const addTestimonial = async () => {
       message: ''
     };
 
-    // Close modal
     bootstrap.Modal.getInstance(document.getElementById('addTestimonialModal')).hide();
   } catch (error) {
     console.error("Error adding testimonial: ", error);
@@ -148,7 +144,8 @@ const filteredTestimonials = computed(() => {
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
-  /* Needed for the pseudo-element to position correctly */
+  scroll-margin-top: 300px; 
+
 
 }
 
@@ -160,14 +157,11 @@ const filteredTestimonials = computed(() => {
   width: 100%;
   height: 100%;
   background: rgba(59, 99, 209, 0.5);
-  /* Blue overlay */
   z-index: 1;
-  /* Ensures the overlay is above the image but below the content */
 }
 
 .testimonials .container {
   position: relative;
-  /* Ensures content stays above the overlay */
   z-index: 2;
 }
 
@@ -191,8 +185,6 @@ const filteredTestimonials = computed(() => {
   text-align: center;
   padding: 30px;
   border-radius: 10px;
-  /* box-shadow: 0px 0 30px rgba(0, 0, 0, 0.1); */
-  /* background: rgba(59, 99, 209, 0.8); */
 
   color: white;
   font-style: italic;

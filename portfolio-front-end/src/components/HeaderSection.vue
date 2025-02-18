@@ -24,7 +24,6 @@
         </div>
       </a>
 
-      <!-- Navigation Menu -->
       <nav id="navmenu" class="navmenu" :class="{ 'navmenu-mobile': isMobileMenuOpen }">
         <ul>
           <li><a href="/#hero">{{ $t("navigation.home") }}</a></li>
@@ -37,7 +36,6 @@
           <!-- Register & Login (Visible for Guests) -->
           <li v-if="!user" style="color: #f39c12;"><router-link to="/register">{{ $t("navigation.registerLogin") }}</router-link></li>
 
-          <!-- Language Toggle Button -->
           <li class="language-toggle">
             <button @click="toggleLanguage" class="btn btn-outline-light">
               {{ locale === 'en' ? 'EN' : 'FR' }}
@@ -45,7 +43,6 @@
           </li>
         </ul>
 
-        <!-- Mobile Toggle Button - Removed d-xl-none -->
         <i class="mobile-nav-toggle bi" :class="{ 'bi-list': !isMobileMenuOpen, 'bi-x': isMobileMenuOpen }"
           @click="toggleMobileMenu"></i>
       </nav>
@@ -104,7 +101,6 @@ const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
 };
 
-// Toggle language function
 const toggleLanguage = () => {
   locale.value = locale.value === 'en' ? 'fr' : 'en';
   localStorage.setItem('locale', locale.value)
@@ -312,7 +308,6 @@ const toggleLanguage = () => {
   }
 
   .language-toggle button {
-    /* border: 1px solid #f39c12; */
     color: white;
     font-size: 1rem;
     padding: 5px 10px;

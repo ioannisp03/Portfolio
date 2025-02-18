@@ -2,7 +2,7 @@
     <section id="resume" class="resume section">
       <div class="container section-title" data-aos="fade-up">
         <h2>{{ $t("resume.title") }}</h2>
-        <p v-html="$t('resume.downloadResume', { resumeLink: '<a id=\'resumeLink\' href=\'#\' @click.prevent=\'downloadCV\'>my resume</a>' })" @click.prevent="downloadCV"></p>
+        <p v-html="$t('resume.downloadResume')" @click.prevent="downloadCV"></p>
       </div>
   
       <div class="container">

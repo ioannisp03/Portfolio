@@ -1,5 +1,4 @@
 <template>
-  <!-- About Section -->
   <section id="about" class="about section">
     <div class="container" data-aos="fade-up" data-aos-delay="100">
       <div class="row gy-4">
@@ -35,7 +34,6 @@
         </div>
       </div>
 
-      <!-- Skills Horizontal Scroll Section -->
       <div class="skills-scroll mt-5">
         <h4 class="text-center mb-4">{{ $t("about.skillsTitle") }}</h4>
         <div class="skills-container">
@@ -57,33 +55,31 @@
 import { ref } from 'vue';
 import { Icon } from '@iconify/vue';
 
-// Full Tech Stack using Iconify icons
 const techStack = ref([
   { name: 'Java', icon: 'devicon:java' },
   { name: 'Python', icon: 'logos:python' },
   { name: 'C#', icon: 'devicon:csharp' },
   { name: 'Kotlin', icon: 'devicon:kotlin' },
-  { name: 'TypeScript', icon: 'logos:typescript-icon' },
   { name: 'JavaScript', icon: 'logos:javascript' },
+  { name: 'TypeScript', icon: 'logos:typescript-icon' },
   { name: 'PHP', icon: 'logos:php' },
-  { name: 'Spring Boot', icon: 'devicon:spring' },
-  { name: 'Docker', icon: 'logos:docker-icon' },
-  { name: 'Git', icon: 'devicon:git' },
-  { name: 'MySQL', icon: 'logos:mysql' },
-  { name: 'MongoDB', icon: 'devicon:mongodb' },
-  { name: 'React.js', icon: 'logos:react' },
   { name: 'HTML5', icon: 'logos:html-5' },
   { name: 'CSS3', icon: 'logos:css-3' },
   { name: 'Bootstrap', icon: 'logos:bootstrap' },
+  { name: 'React.js', icon: 'logos:react' },
+  { name: 'Spring Boot', icon: 'devicon:spring' },
   { name: 'Laravel', icon: 'logos:laravel' },
   { name: 'ASP.NET', icon: 'logos:dotnet' },
+  { name: 'MySQL', icon: 'logos:mysql' },
+  { name: 'MongoDB', icon: 'devicon:mongodb' },
+  { name: 'Docker', icon: 'logos:docker-icon' },
+  { name: 'Git', icon: 'devicon:git' },
   { name: 'Jira', icon: 'logos:jira' },
   { name: 'Pandas', icon: 'logos:pandas' },
 ]);
 </script>
 
 <style scoped>
-/* Horizontal Scroll Container */
 .skills-scroll {
   padding: 50px 0;
 }
@@ -95,7 +91,6 @@ const techStack = ref([
   padding: 20px 0;
 }
 
-/* Individual Skill Items */
 .skill-item {
   flex: 0 0 auto;
   width: 150px;
@@ -106,19 +101,16 @@ const techStack = ref([
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* Hover effect for desktop users */
 .skill-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Skill Icon */
 .skill-icon {
   width: 50px;
   height: 50px;
 }
 
-/* Skill Name */
 .skill-name {
   font-size: 1.1rem;
   font-weight: bold;

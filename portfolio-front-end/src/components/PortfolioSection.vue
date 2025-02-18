@@ -7,7 +7,6 @@
 
     <div class="container">
       <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
-        <!-- Use project._id as key and display localized name/description -->
         <div v-for="project in filteredProjects" :key="project._id" class="col-lg-4 col-md-6 portfolio-item">
           <a :href="project.github_link" target="_blank">
             <img
@@ -33,7 +32,6 @@ import { ref, onMounted, computed } from 'vue';
 
 const projects = ref([]);
 
-// Fetch from the API on mount
 onMounted(async () => {
   try {
     const response = await api.getAllProjects();
@@ -43,7 +41,6 @@ onMounted(async () => {
   }
 });
 
-// Only show projects with status "shown"
 const filteredProjects = computed(() => {
   return projects.value.filter(project => project.status === 'shown');
 });

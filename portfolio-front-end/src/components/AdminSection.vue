@@ -1,7 +1,6 @@
 <template>
     <div class="d-flex flex-column min-vh-100">
       <div class="container mt-4 flex-grow-1">
-        <!-- Responsive Tab Navigation -->
         <ul class="nav nav-tabs justify-content-left">
           <li class="nav-item">
             <a class="nav-link" :class="{ active: currentTab === 'projects' }" @click="currentTab = 'projects'">
@@ -16,7 +15,6 @@
         </ul>
     
         <div class="tab-content mt-3">
-          <!-- Projects Tab -->
           <div v-if="currentTab === 'projects'">
             <h2 class="text-center">{{ $t('adminPanel.projects') }}</h2>
             <button class="btn btn-primary mb-3" @click="showAddProjectModal">

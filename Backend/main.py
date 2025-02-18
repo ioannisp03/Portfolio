@@ -178,17 +178,14 @@ def update_project(projectId):
     project_id = ObjectId(projectId)
     updated_project = request.get_json()
 
-    # Normalize 'name'
     if not isinstance(updated_project.get("name"), dict):
         name_value = updated_project.get("name", "")
         updated_project["name"] = {"en": name_value, "fr": name_value}
 
-    # Normalize 'description'
     if not isinstance(updated_project.get("description"), dict):
         desc_value = updated_project.get("description", "")
         updated_project["description"] = {"en": desc_value, "fr": desc_value}
 
-    # Remove '_id' if present
     updated_project.pop('_id', None)
     
     result = projects_collection.update_one(
@@ -207,17 +204,14 @@ def update_project(projectId):
 def add_project():
     new_project = request.get_json()
 
-    # Normalize the 'name' field: if it's not a dict, create one with the same value for 'en' and 'fr'
     if not isinstance(new_project.get("name"), dict):
         name_value = new_project.get("name", "")
         new_project["name"] = {"en": name_value, "fr": name_value}
 
-    # Normalize the 'description' field similarly
     if not isinstance(new_project.get("description"), dict):
         desc_value = new_project.get("description", "")
         new_project["description"] = {"en": desc_value, "fr": desc_value}
 
-    # Optionally, enforce a default status if not provided
     if "status" not in new_project:
         new_project["status"] = "shown"
 

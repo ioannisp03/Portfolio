@@ -1,6 +1,5 @@
 <template>
   <div class="d-flex flex-column min-vh-10">
-    <!-- Main Content -->
     <div class="auth-container flex-grow-1">
       <div class="auth-card">
         <h2 class="text-center mb-3">{{ $t("auth.registerTitle") }}</h2>
