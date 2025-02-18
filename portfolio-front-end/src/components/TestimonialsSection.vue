@@ -139,7 +139,7 @@ const filteredTestimonials = computed(() => {
 <style scoped>
 .testimonials {
   padding: 100px 0;
-  background-image: url("../.././../public/img/testimonials-bg.jpg");
+  background-image: url("../.././../portfolio-front-end/src/assets/images/testimonials-bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
