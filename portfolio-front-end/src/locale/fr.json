@@ -76,7 +76,9 @@
     "name": "Nom",
     "titleLabel": "Titre",
     "message": "Message",
-    "submitButton": "Ajouter un témoignage"
+    "submitButton": "Ajouter un témoignage",
+    "submissionSuccess": "Témoignage soumis pour approbation"
+
   },
   "contact": {
     "title": "Contact",

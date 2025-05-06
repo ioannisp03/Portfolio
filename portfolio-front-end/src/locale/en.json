@@ -75,7 +75,8 @@
     "name": "Name",
     "titleLabel": "Title",
     "message": "Message",
-    "submitButton": "Add Testimonial"
+    "submitButton": "Submit",
+    "submissionSuccess": "Testimonial submitted for approval"
   },
   "contact": {
     "title": "Contact",

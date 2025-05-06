@@ -89,6 +89,10 @@ import { ref, onMounted, computed } from 'vue';
 import api from '@/services/api';
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as bootstrap from 'bootstrap';
+import Toastify from 'toastify-js';
+import "toastify-js/src/toastify.css";
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n();
 
 const testimonials = ref([]);
 const newTestimonial = ref({
@@ -120,17 +124,43 @@ const addTestimonial = async () => {
     const updatedTestimonials = await api.getAllTestimonials();
     testimonials.value = updatedTestimonials;
 
+    // Reset form
     newTestimonial.value = {
       name: '',
       title: '',
       message: ''
     };
 
+    // Hide modal
     bootstrap.Modal.getInstance(document.getElementById('addTestimonialModal')).hide();
+    
+    // Show success notification
+    Toastify({
+      text: t('testimonials.submissionSuccess'),
+      duration: 3000,
+      close: true,
+      gravity: "top",
+      position: "right",
+      backgroundColor: "#4caf50",
+      stopOnFocus: true
+    }).showToast();
+    
   } catch (error) {
     console.error("Error adding testimonial: ", error);
+    
+    // Show error notification
+    Toastify({
+      text: t('testimonials.submissionError'),
+      duration: 3000,
+      close: true,
+      gravity: "top",
+      position: "right",
+      backgroundColor: "#f44336",
+      stopOnFocus: true
+    }).showToast();
   }
 };
+
 const filteredTestimonials = computed(() => {
   return testimonials.value.filter(testimonial => testimonial.status === 'shown')
 })

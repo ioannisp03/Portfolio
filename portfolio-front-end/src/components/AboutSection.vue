@@ -36,14 +36,37 @@
 
       <div class="skills-scroll mt-5">
         <h4 class="text-center mb-4">{{ $t("about.skillsTitle") }}</h4>
-        <div class="skills-container">
-          <div
-            v-for="(skill, index) in techStack"
-            :key="index"
-            class="skill-item text-center p-3"
-          >
-            <Icon :icon="skill.icon" class="skill-icon" />
-            <p class="skill-name mt-3">{{ skill.name }}</p>
+            <!-- Replace static skills container with carousel -->
+        <div id="skillsCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <!-- Group skills into sets of 4 for each slide -->
+            <div v-for="(skillGroup, groupIndex) in groupedSkills" :key="groupIndex"
+                 :class="['carousel-item', { active: groupIndex === 0 }]">
+              <div class="skills-container d-flex justify-content-center">
+                <div v-for="(skill, skillIndex) in skillGroup" :key="skillIndex" 
+                     class="skill-item text-center p-3 mx-2">
+                  <Icon :icon="skill.icon" class="skill-icon" />
+                  <p class="skill-name mt-3">{{ skill.name }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <button class="carousel-control-prev" type="button" data-bs-target="#skillsCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#skillsCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+          
+          <!-- Add indicators -->
+          <div class="carousel-indicators position-relative mt-3">
+            <button v-for="(_, index) in Math.ceil(techStack.length / 4)" :key="index" 
+                    type="button" data-bs-target="#skillsCarousel" 
+                    :data-bs-slide-to="index" :class="{ active: index === 0 }">
+            </button>
           </div>
         </div>
       </div>
@@ -52,7 +75,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { Icon } from '@iconify/vue';
 
 const techStack = ref([
@@ -77,27 +100,27 @@ const techStack = ref([
   { name: 'Jira', icon: 'logos:jira' },
   { name: 'Pandas', icon: 'logos:pandas' },
 ]);
+const groupedSkills = computed(() => {
+  const result = [];
+  for (let i = 0; i < techStack.value.length; i += 4) {
+    result.push(techStack.value.slice(i, i + 4));
+  }
+  return result;
+});
 </script>
 
 <style scoped>
-.skills-scroll {
-  padding: 50px 0;
-}
-
+/* Update styles for carousel */
 .skills-container {
-  display: flex;
-  overflow-x: auto;
-  scroll-behavior: smooth;
   padding: 20px 0;
 }
 
 .skill-item {
-  flex: 0 0 auto;
   width: 150px;
-  margin-right: 20px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   background-color: #fff;
+  padding: 15px;
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -115,5 +138,34 @@ const techStack = ref([
   font-size: 1.1rem;
   font-weight: bold;
   margin-top: 15px;
+}
+
+/* Customize carousel controls */
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%;
+  opacity: 0.8;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0,0,0,0.3);
+  border-radius: 50%;
+}
+
+/* Style indicators */
+.carousel-indicators {
+  margin-bottom: 0;
+}
+
+.carousel-indicators button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+}
+
+.carousel-indicators button.active {
+  background-color: var(--accent-color);
 }
 </style>
