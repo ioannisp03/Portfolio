@@ -25,6 +25,15 @@ async function submitForm() {
       position: 'right',
       backgroundColor: '#4caf50',
     }).showToast();
+    
+    form.value = {
+      sender_email: '',
+      subject: '',
+      message: '',
+    }
+
+
+
     console.log(response.data);
   } catch (error) {
     Toastify({

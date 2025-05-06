@@ -78,7 +78,6 @@
     "message": "Message",
     "submitButton": "Ajouter un témoignage",
     "submissionSuccess": "Témoignage soumis pour approbation"
-
   },
   "contact": {
     "title": "Contact",
@@ -125,6 +124,24 @@
     "modalTitleUpdateProject": "Mettre à jour le projet",
     "modalTitleAddTestimonial": "Ajouter un témoignage",
     "modalTitleUpdateTestimonial": "Mettre à jour le témoignage",
+    "confirmDeleteProject": "Êtes-vous sûr de vouloir supprimer ce projet ?",
+    "confirmDeleteTestimonial": "Êtes-vous sûr de vouloir supprimer ce témoignage ?",
+    "confirmDeleteTitle": "Confirm Deletion",
+    "notifications": {
+      "projectAdded": "Projet ajouté avec succès",
+      "projectAddError": "Erreur lors de l'ajout du projet",
+      "projectUpdated": "Projet mis à jour avec succès",
+      "projectUpdateError": "Erreur lors de la mise à jour du projet",
+      "projectDeleted": "Projet supprimé avec succès",
+      "testimonialAdded": "Témoignage ajouté avec succès",
+      "testimonialAddError": "Erreur lors de l'ajout du témoignage",
+      "testimonialUpdated": "Témoignage mis à jour avec succès",
+      "testimonialUpdateError": "Erreur lors de la mise à jour du témoignage",
+      "testimonialDeleted": "Témoignage supprimé avec succès",
+      "invalidTestimonialId": "ID de témoignage invalide",
+      "deleteError": "Erreur lors de la suppression"
+    },
+
     "projectFields": {
       "name": "Nom",
       "image": "Image",
@@ -150,7 +167,9 @@
       "addTestimonial": "Ajouter un témoignage",
       "updateTestimonial": "Mettre à jour le témoignage",
       "delete": "Supprimer",
-      "edit": "Modifier"
+      "edit": "Modifier",
+      "cancel": "Annuler",
+      "confirm": "Supprimer"
     }
   }
 }
