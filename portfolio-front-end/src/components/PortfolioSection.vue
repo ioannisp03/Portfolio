@@ -8,17 +8,19 @@
     <div class="container">
       <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
         <div v-for="project in filteredProjects" :key="project._id" class="col-lg-4 col-md-6 portfolio-item">
-          <a :href="project.github_link" target="_blank">
-            <img
-              :src="project.image"
-              class="img-fluid"
-              alt="Project Image"
-              style="width: 100%; height: 200px; object-fit: cover; border-radius: 2px; border: 1px solid black;"
-            />
-          </a>
-          <div class="portfolio-info">
-            <h4>{{ project.name[$i18n.locale] || project.name.en }}</h4>
-            <p>{{ project.description[$i18n.locale] || project.description.en }}</p>
+          <div class="portfolio-wrapper">
+            <a :href="project.github_link" target="_blank" class="portfolio-link">
+              <img
+                :src="project.image"
+                class="img-fluid"
+                alt="Project Image"
+                style="width: 100%; height: 200px; object-fit: cover; border-radius: 2px; border: 1px solid black;"
+              />
+              <div class="portfolio-info">
+                <h4>{{ project.name[$i18n.locale] || project.name.en }}</h4>
+                <p>{{ project.description[$i18n.locale] || project.description.en }}</p>
+              </div>
+            </a>
           </div>
         </div>
       </div>
@@ -58,6 +60,16 @@ const filteredProjects = computed(() => {
 
 .portfolio-item:hover {
   transform: scale(1.05);
+}
+
+.portfolio-wrapper {
+  position: relative;
+}
+
+.portfolio-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
 }
 
 .portfolio-info {
