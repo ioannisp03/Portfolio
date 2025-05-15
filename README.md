@@ -1,38 +1,37 @@
-# Portfolio
+# 🌐 **Portfolio Website**
 
-Project Overview
+A **personal portfolio website** showcasing my projects, skills, and experience — built with modern web technologies to provide a clean, responsive, and interactive experience.
 
-This is a personal portfolio project built with Vue.js for the frontend, Flask for the backend, and MongoDB for the database. The application will be deployed on Vercel, offering a seamless and responsive experience for showcasing projects and gathering user feedback.
+---
 
-Key Features
+## 🔧 **Technologies Used**
 
-Portfolio Showcase: Display personal projects, skills, and achievements in an interactive and user-friendly manner.
+- **Frontend:** Vue.js 3 with Vite  
+- **Backend:** Flask (Python)  
+- **Database:** MongoDB  
+- **Styling:** Bootstrap 5 and custom CSS  
+- **Internationalization:** `vue-i18n` with **English and French** support  
+- **Icons:** Bootstrap Icons and Iconify  
+- **Notifications:** Toastify-js for toast notifications  
 
-Admin Panel: Update website content dynamically, including project details and personal information, without modifying the codebase.
+---
 
-User Interaction: Allow visitors to leave comments and reviews about the portfolio.
+## ✨ **Key Features**
 
-Responsive Design: Ensure a mobile-friendly and aesthetically pleasing interface.
+- ✅ **Responsive design** with mobile-friendly navigation  
+- 🌍 **Multi-language support** (English/French)  
+- 🖼️ **Interactive project showcase**  
+- 💬 **Testimonials section** with submission form  
+- 📬 **Direct email contact form**  
+- 📄 **Resume download** functionality  
+- 🔐 **Admin panel** for content management  
+- 🔑 **User authentication system**
 
-Tech Stack
+---
 
-Frontend: Vue.js
+## 🔗 **Links**
 
-Backend: Flask
+- **Live Demo:** https://starfish-app-bipd7.ondigitalocean.app/
+- **GitHub Repository:** https://github.com/ioannisp03/Portfolio
 
-Database: MongoDB
-
-Deployment: Vercel
-
-
-Prerequisites
-
-Ensure you have the following installed on your system:
-
-Node.js
-
-Python 3.x
-
-MongoDB (local or cloud instance)
-
-Vercel CLI (optional, for deployment)
+---
